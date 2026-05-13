@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GothamOS — Harshit Jadhav</title>
+  <meta name="description" content="Portfolio of Harshit Prabhakar Jadhav — ECE Student, AI Explorer, Tech Enthusiast. Interactive retro desktop experience." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- POWER OFF SCREEN -->
+  <div id="poweroff-screen">
+    <div class="poweroff-content">
+      <div class="poweroff-icon">🦇</div>
+      <p>Gotham never sleeps.<br>But the Bat does.</p>
+      <button id="power-on-btn" onclick="powerOn()">⏻ Power On</button>
+    </div>
+  </div>
+
+  <!-- BOOT SCREEN -->
+  <div id="boot-screen">
+    <div class="boot-content">
+      <div class="boot-logo">
+        <div class="bat-symbol">🦇</div>
+        <div class="boot-text">
+          <div class="boot-title">GothamOS <span class="boot-version">v1.0</span></div>
+          <div class="boot-subtitle">Initializing Bat-System...</div>
+        </div>
+      </div>
+      <div class="boot-messages" id="boot-messages"></div>
+      <div class="boot-bar-outer">
+        <div class="boot-bar-inner" id="boot-bar"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- BG MUSIC -->
+  <audio id="bg-music" loop preload="auto" playsinline style="display: none;">
+    <source src="media/bg_music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- DESKTOP -->
+  <div id="desktop" oncontextmenu="showCtxMenu(event)" onclick="clearDesktopSelection(event)">
+
+    <!-- WALLPAPER VIDEO -->
+    <video id="wallpaper-video" autoplay muted loop playsinline preload="auto">
+      <source src="./media/wallpaper.mp4" type="video/mp4">
+    </video>
+
+    <!-- RAIN CANVAS -->
+    <canvas id="rain-canvas"></canvas>
+
+    <!-- CONTEXT MENU -->
+    <div id="context-menu">
+      <div class="ctx-header">🦇 GothamOS</div>
+      <div class="ctx-item" onclick="openWindow('about');hideCtxMenu()">🧬 About Me</div>
+      <div class="ctx-item" onclick="openWindow('projects');hideCtxMenu()">💻 Projects</div>
+      <div class="ctx-item" onclick="openWindow('hobbies');hideCtxMenu()">🎮 Hobbies</div>
+      <div class="ctx-item" onclick="openWindow('contact');hideCtxMenu()">📡 Contact</div>
+      <div class="ctx-divider"></div>
+      <div class="ctx-item ctx-shutdown" onclick="shutdown();hideCtxMenu()">⏻ Shut Down</div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast"></div>
+
+    <!-- BAT SIGNAL EASTER EGG -->
+    <div id="bat-signal-flash"></div>
+
+    <!-- TASKBAR -->
+    <div id="taskbar">
+      <button id="start-btn" onclick="toggleStartMenu()">
+        <span class="bat-icon-sm">🦇</span>
+        Start
+      </button>
+      <div id="start-menu">
+        <div class="start-menu-header">
+          <span>🦇</span> GothamOS
+        </div>
+        <div class="start-menu-items">
+          <div class="start-item" onclick="openWindow('about')">🧬 About Me</div>
+          <div class="start-item" onclick="openWindow('projects')">💻 Projects</div>
+          <div class="start-item" onclick="openWindow('hobbies')">🎮 Hobbies</div>
+          <div class="start-item" onclick="openWindow('game')">🕹️ Bat Game</div>
+          <div class="start-item" onclick="openWindow('contact')">📡 Contact</div>
+          <div class="start-divider"></div>
+          <div class="start-item shutdown" onclick="shutdown()">⏻ Shut Down...</div>
+        </div>
+      </div>
+      <div id="taskbar-windows"></div>
+      <div id="taskbar-clock" title="Shortcuts: 1 About · 2 Projects · 3 Hobbies · 4 Bat Game · 5 Contact"></div>
+    </div>
+
+    <!-- DESKTOP ICONS -->
+    <div id="desktop-icons">
+      <div class="desktop-icon" onclick="selectIcon(event,this)" ondblclick="openWindow('about')" id="icon-about">
+        <div class="icon-img">🧬</div>
+        <span>About Me</span>
+      </div>
+      <div class="desktop-icon" onclick="selectIcon(event,this)" ondblclick="openWindow('projects')" id="icon-projects">
+        <div class="icon-img">💻</div>
+        <span>Projects</span>
+      </div>
+      <div class="desktop-icon" onclick="selectIcon(event,this)" ondblclick="openWindow('hobbies')" id="icon-hobbies">
+        <div class="icon-img">🎮</div>
+        <span>Hobbies</span>
+      </div>
+      <div class="desktop-icon" onclick="selectIcon(event,this)" ondblclick="openWindow('game')" id="icon-game">
+        <div class="icon-img">🕹️</div>
+        <span>Bat Game</span>
+      </div>
+      <div class="desktop-icon" onclick="selectIcon(event,this)" ondblclick="openWindow('contact')" id="icon-contact">
+        <div class="icon-img">📡</div>
+        <span>Contact</span>
+      </div>
+      <div class="desktop-icon" onclick="selectIcon(event,this)" ondblclick="shutdown()" id="icon-shutdown">
+        <div class="icon-img">⏻</div>
+        <span>Shut Down</span>
+      </div>
+    </div>
+
+    <!-- ===== ABOUT ME WINDOW ===== -->
+    <div class="window" id="win-about" style="top:60px;left:100px;width:560px;display:none;">
+      <div class="title-bar" onmousedown="startDrag(event,'win-about')">
+        <span class="title-bar-text">🧬 About Me — Harshit Jadhav</span>
+        <div class="title-bar-controls">
+          <button onclick="minimizeWindow('win-about')" title="Minimize">_</button>
+          <button onclick="maximizeWindow('win-about')" title="Maximize">□</button>
+          <button onclick="closeWindow('win-about')" title="Close">✕</button>
+        </div>
+      </div>
+      <div class="menu-bar js-os-menu" data-menu-variant="default"></div>
+      <div class="window-body" id="about-view">
+        <div class="about-layout">
+          <div class="about-photo-area">
+            <div class="photo-frame">
+              <img id="about-photo" src="media/photo.jpeg" alt="Harshit Jadhav"
+                onerror="this.style.display='none';document.getElementById('photo-fallback').style.display='flex'" />
+              <div id="photo-fallback" class="photo-bat-placeholder">🦇</div>
+            </div>
+            <div class="about-age-box">
+              <div class="age-label">AGE</div>
+              <div class="age-value" id="age-display">—</div>
+            </div>
+          </div>
+          <div class="about-info" id="about-info-display"></div>
+        </div>
+        <div class="about-bio-box">
+          <div class="bio-header">// BIO.exe <span class="cursor-blink">█</span></div>
+          <div class="bio-text" id="bio-typed"></div>
+        </div>
+      </div>
+      <div class="window-status"><span class="status-led" aria-hidden="true"></span><span>ABOUT.EXE — Ready</span></div>
+    </div>
+
+    <!-- ===== PROJECTS WINDOW ===== -->
+    <div class="window" id="win-projects" style="top:80px;left:160px;width:620px;display:none;">
+      <div class="title-bar" onmousedown="startDrag(event,'win-projects')">
+        <span class="title-bar-text">💻 Projects</span>
+        <div class="title-bar-controls">
+          <button onclick="minimizeWindow('win-projects')" title="Minimize">_</button>
+          <button onclick="maximizeWindow('win-projects')" title="Maximize">□</button>
+          <button onclick="closeWindow('win-projects')" title="Close">✕</button>
+        </div>
+      </div>
+      <div class="menu-bar js-os-menu" data-menu-variant="default"></div>
+      <div class="window-body-stack">
+        <div class="window-body" id="projects-list-view">
+          <div id="projects-grid"></div>
+        </div>
+        <div class="window-body" id="project-detail-view" style="display:none">
+          <button class="win-btn back-btn" onclick="backToProjects()">← Back</button>
+          <div id="project-detail-content"></div>
+        </div>
+      </div>
+      <div class="window-status"><span class="status-led" aria-hidden="true"></span><span>PROJECTS.DAT — Ready</span></div>
+    </div>
+
+    <!-- ===== INTERESTS WINDOW ===== -->
+    <div class="window" id="win-hobbies" style="top:100px;left:220px;width:500px;display:none;">
+      <div class="title-bar" onmousedown="startDrag(event,'win-hobbies')">
+        <span class="title-bar-text">🎮 Hobbies & Favourites</span>
+        <div class="title-bar-controls">
+          <button onclick="minimizeWindow('win-hobbies')" title="Minimize">_</button>
+          <button onclick="maximizeWindow('win-hobbies')" title="Maximize">□</button>
+          <button onclick="closeWindow('win-hobbies')" title="Close">✕</button>
+        </div>
+      </div>
+      <div class="menu-bar js-os-menu" data-menu-variant="default"></div>
+      <div class="window-body" id="hobbies-list-view">
+        <div id="hobbies-grid"></div>
+      </div>
+      <div class="window-status"><span class="status-led" aria-hidden="true"></span><span>HOBBIES.CFG — Ready</span></div>
+    </div>
+
+    <!-- ===== CONTACT WINDOW ===== -->
+    <div class="window" id="win-contact" style="top:90px;left:280px;width:420px;display:none;">
+      <div class="title-bar" onmousedown="startDrag(event,'win-contact')">
+        <span class="title-bar-text">📡 Contact — Signal the Bat</span>
+        <div class="title-bar-controls">
+          <button onclick="minimizeWindow('win-contact')" title="Minimize">_</button>
+          <button onclick="maximizeWindow('win-contact')" title="Maximize">□</button>
+          <button onclick="closeWindow('win-contact')" title="Close">✕</button>
+        </div>
+      </div>
+      <div class="menu-bar js-os-menu" data-menu-variant="default"></div>
+      <div class="window-body" id="contact-display-view">
+        <div id="contact-display"></div>
+      </div>
+      <div class="window-status"><span class="status-led" aria-hidden="true"></span><span>COMMS.LINK — Online</span></div>
+    </div>
+
+    <!-- BAT GAME WINDOW -->
+    <div class="window" id="win-game" style="top:90px;left:240px;width:580px;display:none;">
+      <div class="title-bar" onmousedown="startDrag(event,'win-game')">
+        <span class="title-bar-text">🕹️ Gotham Run — Bat Game</span>
+        <div class="title-bar-controls">
+          <button onclick="minimizeWindow('win-game')" title="Minimize">_</button>
+          <button onclick="maximizeWindow('win-game')" title="Maximize">□</button>
+          <button onclick="closeWindow('win-game')" title="Close">✕</button>
+        </div>
+      </div>
+      <div class="menu-bar js-os-menu" data-menu-variant="game"></div>
+      <div class="window-body game-window-body">
+        <div class="game-header">
+          <div class="game-stats">
+            <span id="game-score">Score: 0</span>
+            <span id="game-highscore">High Score: 0</span>
+          </div>
+          <div class="game-hints">Space or click to flap. Avoid obstacles and keep the bat alive.</div>
+        </div>
+        <div class="game-canvas-wrapper">
+          <canvas id="game-canvas" width="560" height="260"></canvas>
+        </div>
+        <div class="game-controls">
+          <button class="win-btn primary" onclick="startBatGame()">Start</button>
+          <button class="win-btn" onclick="resetBatGame()">Reset</button>
+        </div>
+      </div>
+      <div class="window-status"><span class="status-led" aria-hidden="true"></span><span>BAT_RUN.EXE — Insert coin… (Space)</span></div>
+    </div>
+
+
+
+    <!-- SHUTDOWN CONFIRM DIALOG -->
+    <div id="shutdown-dialog" style="display:none">
+      <div class="window shutdown-window">
+        <div class="title-bar">
+          <span class="title-bar-text">⏻ Shut Down GothamOS</span>
+          <div class="title-bar-controls">
+            <button onclick="document.getElementById('shutdown-dialog').style.display='none'">✕</button>
+          </div>
+        </div>
+        <div class="menu-bar menu-bar-dense js-os-menu-shutdown"></div>
+        <div class="window-body">
+          <div class="dialog-body">
+            <div style="font-size:48px;margin-bottom:12px">🦇</div>
+            <p>Gotham needs you.<br>Are you sure you want to leave?</p>
+          </div>
+          <div class="window-footer">
+            <button class="win-btn primary" onclick="confirmShutdown()">Shut Down</button>
+            <button class="win-btn" onclick="document.getElementById('shutdown-dialog').style.display='none'">Stay</button>
+          </div>
+        </div>
+        <div class="window-status"><span class="status-led" aria-hidden="true"></span><span>AWAITING USER INPUT</span></div>
+      </div>
+    </div>
+
+    <!-- SPINNING DISC (MUSIC INDICATOR) -->
+    <div id="music-disc" onclick="toggleMusicMute()" title="Click to mute/unmute"></div>
+
+    <!-- HPJ SIGNATURE WATERMARK -->
+    <div id="desktop-signature">HPJ · GothamOS · 2026</div>
+
+
+  </div><!-- end desktop -->
+
+  <script src="js/app.js"></script>
+</body>
+</html>
