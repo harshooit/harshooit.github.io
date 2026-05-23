@@ -901,7 +901,7 @@ function hideCtxMenu() {
 // ============================
 // ===== BIO TYPING ===========
 // ============================
-const BIO_TEXT = 'A developer at heart in Pune — where circuits meet code and AI rewrites what is possible. ECE freshman building in embedded systems, computer vision, cloud, and full-stack tooling. Always compiling ideas, shipping projects, and pushing the stack forward. The terminal never sleeps.';
+const BIO_TEXT = 'A developer from Pune. ECE freshman building in embedded systems, computer vision, cloud, and full-stack tooling. Always compiling ideas, shipping projects, and pushing the stack forward';
 let bioTyped = false;
 function typeBio() {
   const el = document.getElementById('bio-typed');
