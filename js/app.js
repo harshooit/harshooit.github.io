@@ -1,4 +1,4 @@
-// ===== GOTHAM OS — HARSHIT JADHAV PORTFOLIO =====
+// ===== DEVSHELL OS — HARSHIT JADHAV PORTFOLIO =====
 // Read-only portfolio. All data hardcoded below.
 
 // ---- GOOGLE AI GENERATIVE CONFIG ----
@@ -11,7 +11,19 @@ const PORTFOLIO = {
     occupation: 'ECE 1st Year Student',
     college:    'Engineering (ECE)',
     interests:  'AI, Embedded Systems, Cloud, Crypto, Tech Innovation',
+    resumeUrl:  '',  // Add your resume PDF path here, e.g. 'media/resume.pdf'
   },
+
+  skills: [
+    { name: 'Python',           level: 85, icon: '🐍' },
+    { name: 'Arduino / ESP32',  level: 90, icon: '🔌' },
+    { name: 'Computer Vision',  level: 75, icon: '👁️' },
+    { name: 'AI / ML',          level: 70, icon: '🤖' },
+    { name: 'Cloud (Azure)',    level: 65, icon: '☁️' },
+    { name: 'C / C++',          level: 80, icon: '⚙️' },
+    { name: 'Web Dev',          level: 70, icon: '🌐' },
+    { name: 'Circuit Design',   level: 85, icon: '🔧' },
+  ],
 
   projects: [
     {
@@ -31,6 +43,7 @@ const PORTFOLIO = {
       tags: 'Electronics, Analog Circuits, Resistors, Capacitors',
       url: '',
       images: [],
+      video: 'media/clap_switch.mp4',  // Place your clap switch video here
     },
     {
       id: 3,
@@ -40,6 +53,7 @@ const PORTFOLIO = {
       tags: 'Arduino UNO, Robotics, IR Sensors, Embedded Systems',
       url: '',
       images: [],
+      video: 'media/line_follower.mp4',  // Place your line follower video here
     },
     {
       id: 4,
@@ -56,18 +70,24 @@ const PORTFOLIO = {
     games: [
       { name: 'The Walking Dead Series', emoji: '🧟', note: 'Clementine forever.',                           href: 'https://store.steampowered.com/app/207610/' },
       { name: 'Red Dead Redemption 2',   emoji: '🤠', note: 'Greatest open world ever made.',                href: 'https://store.steampowered.com/app/1174180/' },
-      { name: 'Batman: Arkham Series',   emoji: '🦇', note: 'The Dark Knight rides again.',                  href: 'https://store.steampowered.com/app/200260/' },
-      { name: "Assassin's Creed Series", emoji: '🗡️', note: 'Nothing is true, everything is permitted.',    href: 'https://store.steampowered.com/app/2641580/' },
+      { name: 'Cyberpunk 2077',          emoji: '🌃', note: 'Welcome to Night City.',                        href: 'https://store.steampowered.com/app/1091500/' },
+      { name: "Assassin's Creed Series", emoji: '🗡️', note: 'Nothing is true, everything is permitted.',    href: 'https://store.steampowered.com/franchise/assassinscreed' },
     ],
     movies: [
-      { name: 'Interstellar',   emoji: '🚀', note: 'Do not go gentle into that good night.', href: 'https://www.imdb.com/title/tt0816692/' },
-      { name: 'Oppenheimer',    emoji: '☢️', note: 'Now I am become Death.',                 href: 'https://www.imdb.com/title/tt15398776/' },
-      { name: 'Se7en',          emoji: '🔦', note: "What's in the box?!",                   href: 'https://www.imdb.com/title/tt0114369/' },
+      { name: 'Interstellar',          emoji: '🚀', note: 'Do not go gentle into that good night.',  href: 'https://www.imdb.com/title/tt0816692/' },
+      { name: 'The Matrix',            emoji: '💊', note: 'There is no spoon.',                     href: 'https://www.imdb.com/title/tt0133093/' },
+      { name: 'Inception',             emoji: '🌀', note: 'You mustn\'t be afraid to dream bigger.', href: 'https://www.imdb.com/title/tt1375666/' },
+      { name: 'Oppenheimer',           emoji: '☢️', note: 'Now I am become Death.',                  href: 'https://www.imdb.com/title/tt15398776/' },
+      { name: 'Fight Club',            emoji: '🥊', note: 'First rule: you do not talk about it.',   href: 'https://www.imdb.com/title/tt0137523/' },
+      { name: 'Inglourious Basterds',  emoji: '🎬', note: 'Bingo! That\'s a bingo!',                href: 'https://www.imdb.com/title/tt0361748/' },
+      { name: 'The Social Network',    emoji: '💻', note: 'A million dollars isn\'t cool.',          href: 'https://www.imdb.com/title/tt1285016/' },
+      { name: 'Se7en',                 emoji: '🔦', note: "What's in the box?!",                    href: 'https://www.imdb.com/title/tt0114369/' },
     ],
     series: [
       { name: 'Breaking Bad',       emoji: '🧪', note: 'I am the one who knocks.',     href: 'https://www.imdb.com/title/tt0903747/' },
       { name: 'Friends',            emoji: '☕', note: 'Could it BE any better?',      href: 'https://www.imdb.com/title/tt0108778/' },
       { name: 'Game of Thrones',    emoji: '👑', note: 'Winter is coming.',             href: 'https://www.imdb.com/title/tt0944947/' },
+      { name: 'Chernobyl',          emoji: '☣️', note: 'What is the cost of lies?',    href: 'https://www.imdb.com/title/tt7366338/' },
       { name: 'Brooklyn Nine-Nine', emoji: '🚔', note: 'Cool cool cool cool cool.',    href: 'https://www.imdb.com/title/tt2467372/' },
     ],
     music: [
@@ -100,13 +120,13 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 const BOOT_MSGS = [
-  'HARSHIT PRABHAKAR JADHAV // GothamOS v1.0',
-  'Loading ECE subsystems and circuit drivers...',
+  'HARSHIT PRABHAKAR JADHAV // DevShell OS v1.0',
+  'Loading kernel modules and dev toolchain...',
   'Initializing AI inference engine...',
   'Decrypting project archives...',
-  'Calibrating bat-signal array...',
-  'Bat system online. Game ready.',
-  'System ready. Welcome, Detective.',
+  'Mounting /home/portfolio...',
+  'Network stack online. SSH ready.',
+  'System ready. Welcome, developer.',
 ];
 
 function runBoot() {
@@ -144,7 +164,7 @@ function showDesktop() {
   initEasterEgg();
   initDesktopInteractivity();
   initOsMenus();
-  setTimeout(() => showToast('🦇 Welcome, Detective. Gotham awaits.', 3500), 600);
+  setTimeout(() => showToast('> Welcome, developer. DevShell OS is online.', 3500), 600);
 
   // Start wallpaper video
   const video = document.getElementById('wallpaper-video');
@@ -282,20 +302,17 @@ function openWindow(name) {
   void win.offsetWidth;
   win.classList.add('window-pop');
   if (name === 'about') setTimeout(typeBio, 200);
-  if (name === 'game') setTimeout(() => { initBatGame(); resetBatGame(); startBatGame(); }, 200);
 }
 
 function closeWindow(id) {
   const win = document.getElementById(id);
   if (win) win.style.display = 'none';
-  if (id === 'win-game') stopBatGame();
   removeTaskbarBtn(id);
 }
 
 function minimizeWindow(id) {
   const win = document.getElementById(id);
   if (!win) return;
-  if (id === 'win-game') stopBatGame();
   win.style.display = 'none';
   windowMeta[id] = windowMeta[id] || {};
   windowMeta[id].minimized = true;
@@ -321,9 +338,8 @@ function addTaskbarBtn(id, name) {
   const labels = {
     'win-about':'🧬 About',
     'win-projects':'💻 Projects',
-    'win-hobbies':'🎮 Hobbies',
+    'win-hobbies':'⭐ Favourites',
     'win-contact':'📡 Contact',
-    'win-game':'🕹️ Bat Game',
   };
   const btn = document.createElement('button');
   btn.className = 'taskbar-btn active';
@@ -461,6 +477,36 @@ function renderAboutDisplay() {
       <span class="about-value">${escHtml(r.value)}</span>
     </div>
   `).join('');
+
+  // Skills section
+  const skillsContainer = document.getElementById('skills-display');
+  if (skillsContainer && PORTFOLIO.skills) {
+    skillsContainer.innerHTML = PORTFOLIO.skills.map((s, i) => `
+      <div class="skill-row" style="animation-delay: ${i * 0.08}s">
+        <div class="skill-header">
+          <span class="skill-icon">${s.icon}</span>
+          <span class="skill-name">${escHtml(s.name)}</span>
+          <span class="skill-pct">${s.level}%</span>
+        </div>
+        <div class="skill-bar-outer">
+          <div class="skill-bar-inner" style="--skill-level: ${s.level}%"></div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Resume button
+  const resumeBtn = document.getElementById('resume-btn');
+  if (resumeBtn) {
+    if (a.resumeUrl) {
+      resumeBtn.href = a.resumeUrl;
+      resumeBtn.classList.remove('disabled');
+    } else {
+      resumeBtn.removeAttribute('href');
+      resumeBtn.classList.add('disabled');
+      resumeBtn.title = 'Resume coming soon';
+    }
+  }
 }
 
 // ============================
@@ -494,6 +540,26 @@ function viewProject(id) {
     ? `<div class="detail-images">${proj.images.map(src=>`<img src="${src}" onclick="openImageFull('${src}')">`).join('')}</div>`
     : `<div class="detail-img-placeholder"><div class="placeholder-icon">${proj.emoji}</div><div class="placeholder-label">📷 Image Coming Soon</div></div>`;
 
+  // Video section
+  let videoHtml = '';
+  if (proj.video !== undefined) {
+    videoHtml = `
+      <div class="detail-video-section">
+        <div class="detail-section-label">📹 PROJECT DEMO</div>
+        <div class="detail-video-wrap">
+          <video class="detail-video" controls preload="metadata" playsinline poster="">
+            <source src="${escHtml(proj.video)}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="detail-video-fallback" id="video-fallback-${proj.id}">
+            <div class="video-fallback-icon">🎬</div>
+            <div class="video-fallback-text">Place <code>${escHtml(proj.video.split('/').pop())}</code> in /media/ folder</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
   const tags = proj.tags ? proj.tags.split(',').map(t=>`<span class="tag-chip">${escHtml(t.trim())}</span>`).join('') : '';
   const linkHtml = proj.url
     ? `<a href="${escHtml(proj.url)}" target="_blank" rel="noopener" class="win-btn link-btn">🔗 Open Project</a>`
@@ -502,10 +568,32 @@ function viewProject(id) {
   detail.innerHTML = `
     <div class="detail-title">${proj.emoji} ${escHtml(proj.title)}</div>
     ${imagesHtml}
+    ${videoHtml}
     ${tags ? `<div class="detail-tags">${tags}</div>` : ''}
     ${proj.desc ? `<div class="detail-desc">${escHtml(proj.desc)}</div>` : ''}
     ${linkHtml}
   `;
+
+  // Setup video error handling to show fallback
+  if (proj.video !== undefined) {
+    const videoEl = detail.querySelector('.detail-video');
+    const fallbackEl = detail.querySelector(`#video-fallback-${proj.id}`);
+    if (videoEl && fallbackEl) {
+      videoEl.addEventListener('error', () => {
+        videoEl.style.display = 'none';
+        fallbackEl.style.display = 'flex';
+      }, true);
+      // Also check source error
+      const sourceEl = videoEl.querySelector('source');
+      if (sourceEl) {
+        sourceEl.addEventListener('error', () => {
+          videoEl.style.display = 'none';
+          fallbackEl.style.display = 'flex';
+        });
+      }
+    }
+  }
+
   document.getElementById('projects-list-view').style.display = 'none';
   document.getElementById('project-detail-view').style.display = 'block';
 }
@@ -527,12 +615,18 @@ function renderHobbiesGrid() {
   const grid = document.getElementById('hobbies-grid');
   const h = PORTFOLIO.hobbies;
 
+  let catIdx = 0;
   function makeCategory(icon, title, items, badge) {
+    const ci = catIdx++;
     return `
-      <div class="hobby-category">
-        <div class="hobby-cat-header">${icon} ${title} ${badge ? `<span class="cat-badge">${badge}</span>` : ''}</div>
+      <div class="hobby-category hobby-cat-reveal" style="animation-delay: ${ci * 0.1}s">
+        <div class="hobby-cat-header">
+          <span class="hobby-cat-icon">${icon}</span>
+          <span class="hobby-cat-title">${title}</span>
+          ${badge ? `<span class="cat-badge">${badge}</span>` : ''}
+        </div>
         <div class="hobby-cat-items">
-          ${items.map(i => {
+          ${items.map((i, idx) => {
             const inner = `
               <span class="hobby-item-emoji">${i.emoji}</span>
               <div class="hobby-item-info">
@@ -541,9 +635,10 @@ function renderHobbiesGrid() {
               </div>
               ${i.href ? `<span class="hobby-item-link-icon">↗</span>` : ''}
             `;
+            const style = `style="animation-delay: ${(ci * 0.1) + (idx * 0.05)}s"`;
             return i.href
-              ? `<a class="hobby-item hobby-item-link" href="${escHtml(i.href)}" target="_blank" rel="noopener">${inner}</a>`
-              : `<div class="hobby-item">${inner}</div>`;
+              ? `<a class="hobby-item hobby-item-link hobby-item-reveal" ${style} href="${escHtml(i.href)}" target="_blank" rel="noopener">${inner}</a>`
+              : `<div class="hobby-item hobby-item-reveal" ${style}>${inner}</div>`;
           }).join('')}
         </div>
       </div>
@@ -572,10 +667,14 @@ function renderContactDisplay() {
 
   const display = document.getElementById('contact-display');
   display.innerHTML = `
-    <div class="contact-header">// SIGNAL THE BAT</div>
+    <div class="contact-header">
+      <span class="contact-header-icon">📡</span>
+      <span>// OPEN_CHANNEL</span>
+    </div>
+    <div class="contact-subtitle">Reach out through any channel below</div>
     <div class="contact-card">
-      ${links.map(l => `
-        <a class="contact-link-row" href="${escHtml(l.href)}" target="_blank" rel="noopener">
+      ${links.map((l, i) => `
+        <a class="contact-link-row contact-row-reveal" style="animation-delay: ${i * 0.08}s" href="${escHtml(l.href)}" target="_blank" rel="noopener">
           <span class="contact-icon">${l.icon}</span>
           <span class="contact-label">${escHtml(l.label)}</span>
           <span class="contact-value">${escHtml(l.value)}</span>
@@ -644,8 +743,7 @@ function initOsMenus() {
     if (bar.dataset.osBuilt) return;
     const win = bar.closest('.window');
     if (!win || !win.id) return;
-    const variant = bar.dataset.menuVariant === 'game' ? 'game' : 'default';
-    bar.innerHTML = renderOsMenuBarHtml(variant, win.id);
+    bar.innerHTML = renderOsMenuBarHtml(win.id);
     bar.dataset.osBuilt = '1';
   });
   document.querySelectorAll('.js-os-menu-shutdown').forEach((bar) => {
@@ -683,17 +781,17 @@ function osMenuCloseDrop() {
   closeAllOsMenuDropdowns();
 }
 
-function renderOsMenuBarHtml(variant, winId) {
-  const editOrGame =
-    variant === 'game'
-      ? `<div class="menu-pull-wrap">
-  <button type="button" class="menu-pull">Game</button>
+function renderOsMenuBarHtml(winId) {
+  return `<div class="menu-pull-wrap">
+  <button type="button" class="menu-pull">File</button>
   <div class="menu-dropdown" role="menu">
-    <div class="menu-dd-item" role="menuitem" onclick="osMenuCloseDrop();resetBatGame();startBatGame();">New game</div>
-    <div class="menu-dd-item" role="menuitem" onclick="osMenuCloseDrop();showToast('High score is saved in your browser (local storage).', 2600);">High scores…</div>
+    <div class="menu-dd-item" role="menuitem" onclick="osMenuCloseDrop();fileMenuNew();">New<span class="menu-dd-shortcut">Ctrl+N</span></div>
+    <div class="menu-dd-sep"></div>
+    <div class="menu-dd-item" role="menuitem" onclick="osMenuCloseDrop();closeWindow('${winId}');">Close</div>
+    <div class="menu-dd-item" role="menuitem" onclick="osMenuCloseDrop();shutdown();">Exit DevShell OS…</div>
   </div>
-</div>`
-      : `<div class="menu-pull-wrap">
+</div>
+<div class="menu-pull-wrap">
   <button type="button" class="menu-pull">Edit</button>
   <div class="menu-dropdown" role="menu">
     <div class="menu-dd-item disabled" role="menuitem">Undo<span class="menu-dd-shortcut">Ctrl+Z</span></div>
@@ -703,18 +801,7 @@ function renderOsMenuBarHtml(variant, winId) {
     <div class="menu-dd-item disabled" role="menuitem">Copy<span class="menu-dd-shortcut">Ctrl+C</span></div>
     <div class="menu-dd-item disabled" role="menuitem">Paste<span class="menu-dd-shortcut">Ctrl+V</span></div>
   </div>
-</div>`;
-
-  return `<div class="menu-pull-wrap">
-  <button type="button" class="menu-pull">File</button>
-  <div class="menu-dropdown" role="menu">
-    <div class="menu-dd-item" role="menuitem" onclick="osMenuCloseDrop();fileMenuNew();">New<span class="menu-dd-shortcut">Ctrl+N</span></div>
-    <div class="menu-dd-sep"></div>
-    <div class="menu-dd-item" role="menuitem" onclick="osMenuCloseDrop();closeWindow('${winId}');">Close</div>
-    <div class="menu-dd-item" role="menuitem" onclick="osMenuCloseDrop();shutdown();">Exit GothamOS…</div>
-  </div>
 </div>
-${editOrGame}
 <div class="menu-pull-wrap">
   <button type="button" class="menu-pull">View</button>
   <div class="menu-dropdown" role="menu">
@@ -725,6 +812,13 @@ ${editOrGame}
     <div class="menu-dd-item" role="menuitem" onclick="osMenuCloseDrop();viewMenuFullScreenHint();">Full screen<span class="menu-dd-shortcut">F11</span></div>
   </div>
 </div>
+<div class="menu-pull-wrap">
+  <button type="button" class="menu-pull">Help</button>
+  <div class="menu-dropdown" role="menu">
+    <div class="menu-dd-item" role="menuitem" onclick="osMenuCloseDrop();showToast('Shortcuts: 1 About · 2 Projects · 3 Favourites · 4 Contact. Right-click desktop for menu. Type sudo for a surprise.', 5000);">Help Topics</div>
+    <div class="menu-dd-item" role="menuitem" onclick="osMenuCloseDrop();showToast('DevShell OS v1.0 — portfolio shell by Harshit Jadhav. Built with HTML, CSS, and JavaScript.', 4200);">About DevShell OS…</div>
+    <div class="menu-dd-sep"></div>
+    <div class="menu-dd-item" role="menuitem" onclick="osMenuCloseDrop();showToast('Tip: Double-click desktop icons to launch apps. Use the vinyl control to mute audio.', 4200);">Tip of the Day</div>
   </div>
 </div>`;
 }
@@ -807,7 +901,7 @@ function hideCtxMenu() {
 // ============================
 // ===== BIO TYPING ===========
 // ============================
-const BIO_TEXT = 'A tech-obsessed mind lurking in the shadows of Pune — where circuits meet code and AI rewrites reality. Currently engineering the future as an ECE freshman, chasing every breakthrough in Artificial Intelligence, embedded systems, cloud computing, and the relentless innovation reshaping our world. The city sleeps. The learning never stops.';
+const BIO_TEXT = 'A developer at heart in Pune — where circuits meet code and AI rewrites what is possible. ECE freshman building in embedded systems, computer vision, cloud, and full-stack tooling. Always compiling ideas, shipping projects, and pushing the stack forward. The terminal never sleeps.';
 let bioTyped = false;
 function typeBio() {
   const el = document.getElementById('bio-typed');
@@ -846,7 +940,7 @@ function initRain() {
       ctx.beginPath();
       ctx.moveTo(d.x, d.y);
       ctx.lineTo(d.x - 0.8, d.y + d.len);
-      ctx.strokeStyle = `rgba(120,160,255,${d.op})`;
+      ctx.strokeStyle = `rgba(0,255,136,${d.op})`;
       ctx.lineWidth = 0.6;
       ctx.stroke();
       d.y += d.spd;
@@ -858,24 +952,24 @@ function initRain() {
 }
 
 // ============================
-// ===== BATMAN EASTER EGG ====
+// ===== TERMINAL EASTER EGG ===
 // ============================
 function initEasterEgg() {
   let buf = '';
   document.addEventListener('keydown', e => {
-    buf = (buf + e.key.toLowerCase()).slice(-6);
-    if (buf === 'batman') {
+    buf = (buf + e.key.toLowerCase()).slice(-4);
+    if (buf === 'sudo') {
       buf = '';
-      triggerBatSignal();
+      triggerTerminalFlash();
     }
   });
 }
-function triggerBatSignal() {
-  const el = document.getElementById('bat-signal-flash');
-  el.textContent = '🦇';
-  el.classList.add('bat-flash-active');
-  showToast('🦇 I am vengeance. I am the night. I am BATMAN!', 3000);
-  setTimeout(() => el.classList.remove('bat-flash-active'), 2500);
+function triggerTerminalFlash() {
+  const el = document.getElementById('terminal-flash');
+  el.textContent = 'ACCESS GRANTED';
+  el.classList.add('term-flash-active');
+  showToast('> sudo: access granted. Welcome to the mainframe.', 3000);
+  setTimeout(() => el.classList.remove('term-flash-active'), 2500);
 }
 
 let desktopInteractivityReady = false;
@@ -939,226 +1033,12 @@ function desktopKeyShortcuts(e) {
     Digit1: 'about',
     Digit2: 'projects',
     Digit3: 'hobbies',
-    Digit4: 'game',
-    Digit5: 'contact',
+    Digit4: 'contact',
   };
   const win = map[e.code];
   if (win) {
     e.preventDefault();
     openWindow(win);
-  }
-}
-
-// ============================
-// ===== BAT GAME =====
-// ============================
-const BAT_GAME = {
-  running: false,
-  loopId: null,
-  canvas: null,
-  ctx: null,
-  width: 560,
-  height: 260,
-  bat: { x: 72, y: 120, vy: 0, width: 18, height: 18 },
-  batImage: null,
-  pipes: [],
-  score: 0,
-  highScore: 0,
-  spawnCountdown: 0,
-  lastTime: 0,
-  gameOver: false,
-  gravity: 0.35,
-  jump: -7.5,
-  speed: 2.4,
-};
-
-function loadBatImage() {
-  if (BAT_GAME.batImage) return Promise.resolve(BAT_GAME.batImage);
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.src = 'media/batman.png';
-    img.onload = () => {
-      BAT_GAME.batImage = img;
-      resolve(img);
-    };
-    img.onerror = () => {
-      console.warn('Batman image not found, using fallback rectangle');
-      resolve(null);
-    };
-  });
-}
-
-function initBatGame() {
-  if (BAT_GAME.canvas) return;
-  const canvas = document.getElementById('game-canvas');
-  if (!canvas) return;
-  BAT_GAME.canvas = canvas;
-  BAT_GAME.ctx = canvas.getContext('2d');
-  loadBatImage();
-  canvas.addEventListener('click', () => {
-    const win = document.getElementById('win-game');
-    if (win && win.style.display === 'block') flapBat();
-  });
-  document.addEventListener('keydown', e => {
-    if (e.code === 'Space') {
-      const win = document.getElementById('win-game');
-      if (win && win.style.display === 'block') {
-        e.preventDefault();
-        flapBat();
-      }
-    }
-  });
-  loadBatHighScore();
-  resetBatGame();
-}
-
-function loadBatHighScore() {
-  const stored = localStorage.getItem('gothamos-bat-highscore');
-  BAT_GAME.highScore = stored ? Number(stored) : 0;
-  updateBatGameStats();
-}
-
-function saveBatHighScore() {
-  if (BAT_GAME.score > BAT_GAME.highScore) {
-    BAT_GAME.highScore = BAT_GAME.score;
-    localStorage.setItem('gothamos-bat-highscore', String(BAT_GAME.highScore));
-  }
-  updateBatGameStats();
-}
-
-function updateBatGameStats() {
-  const scoreEl = document.getElementById('game-score');
-  const highEl = document.getElementById('game-highscore');
-  if (scoreEl) scoreEl.textContent = `Score: ${BAT_GAME.score}`;
-  if (highEl) highEl.textContent = `High Score: ${BAT_GAME.highScore}`;
-}
-
-function startBatGame() {
-  if (!BAT_GAME.canvas) initBatGame();
-  if (!BAT_GAME.canvas) return;
-  if (BAT_GAME.running) return;
-  BAT_GAME.running = true;
-  BAT_GAME.gameOver = false;
-  BAT_GAME.lastTime = performance.now();
-  BAT_GAME.loopId = requestAnimationFrame(batGameLoop);
-}
-
-function resetBatGame() {
-  BAT_GAME.running = false;
-  if (BAT_GAME.loopId) cancelAnimationFrame(BAT_GAME.loopId);
-  BAT_GAME.loopId = null;
-  BAT_GAME.pipes = [];
-  BAT_GAME.score = 0;
-  BAT_GAME.bat.y = 120;
-  BAT_GAME.bat.vy = 0;
-  BAT_GAME.gameOver = false;
-  BAT_GAME.spawnCountdown = 0;
-  updateBatGameStats();
-  drawBatGame();
-}
-
-function stopBatGame() {
-  BAT_GAME.running = false;
-  if (BAT_GAME.loopId) cancelAnimationFrame(BAT_GAME.loopId);
-  BAT_GAME.loopId = null;
-}
-
-function flapBat() {
-  if (!BAT_GAME.canvas) initBatGame();
-  if (BAT_GAME.gameOver) return;
-  if (!BAT_GAME.running) {
-    resetBatGame();
-    startBatGame();
-  }
-  BAT_GAME.bat.vy = BAT_GAME.jump;
-}
-
-function batGameLoop(timestamp) {
-  if (!BAT_GAME.running) return;
-  const delta = Math.min(40, timestamp - BAT_GAME.lastTime);
-  BAT_GAME.lastTime = timestamp;
-  updateBatGame(delta / 16);
-  drawBatGame();
-  if (BAT_GAME.running) BAT_GAME.loopId = requestAnimationFrame(batGameLoop);
-}
-
-function updateBatGame(delta) {
-  BAT_GAME.bat.vy += BAT_GAME.gravity * delta;
-  BAT_GAME.bat.y += BAT_GAME.bat.vy * delta;
-  BAT_GAME.spawnCountdown -= delta;
-  if (BAT_GAME.spawnCountdown <= 0) {
-    const gap = 72 + Math.random() * 40;
-    const top = 32 + Math.random() * 96;
-    BAT_GAME.pipes.push({ x: BAT_GAME.width, width: 26, top, bottom: top + gap, scored: false });
-    BAT_GAME.spawnCountdown = 92;
-  }
-  BAT_GAME.pipes.forEach(pipe => {
-    pipe.x -= BAT_GAME.speed * delta;
-    if (!pipe.scored && pipe.x + pipe.width < BAT_GAME.bat.x) {
-      pipe.scored = true;
-      BAT_GAME.score++;
-      updateBatGameStats();
-    }
-  });
-  BAT_GAME.pipes = BAT_GAME.pipes.filter(pipe => pipe.x + pipe.width > -20);
-  if (BAT_GAME.bat.y < 0 || BAT_GAME.bat.y + BAT_GAME.bat.height > BAT_GAME.height) {
-    BAT_GAME.gameOver = true;
-  }
-  for (const pipe of BAT_GAME.pipes) {
-    if (BAT_GAME.bat.x + BAT_GAME.bat.width > pipe.x && BAT_GAME.bat.x < pipe.x + pipe.width) {
-      if (BAT_GAME.bat.y < pipe.top || BAT_GAME.bat.y + BAT_GAME.bat.height > pipe.bottom) {
-        BAT_GAME.gameOver = true;
-        break;
-      }
-    }
-  }
-  if (BAT_GAME.gameOver) {
-    stopBatGame();
-    saveBatHighScore();
-  }
-}
-
-function drawBatGame() {
-  const ctx = BAT_GAME.ctx;
-  const canvas = BAT_GAME.canvas;
-  if (!ctx || !canvas) return;
-  ctx.fillStyle = '#05050d';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#11152e';
-  for (let x = 0; x < canvas.width; x += 16) {
-    ctx.fillRect(x, canvas.height - 8, 12, 2);
-  }
-  BAT_GAME.pipes.forEach(pipe => {
-    ctx.fillStyle = '#1f233f';
-    ctx.fillRect(pipe.x, 0, pipe.width, pipe.top);
-    ctx.fillRect(pipe.x, pipe.bottom, pipe.width, canvas.height - pipe.bottom);
-    ctx.fillStyle = '#272b54';
-    ctx.fillRect(pipe.x + 4, 0, pipe.width - 8, pipe.top);
-    ctx.fillRect(pipe.x + 4, pipe.bottom, pipe.width - 8, canvas.height - pipe.bottom);
-  });
-  
-  // Draw bat (image or fallback)
-  if (BAT_GAME.batImage) {
-    ctx.drawImage(BAT_GAME.batImage, BAT_GAME.bat.x, BAT_GAME.bat.y, BAT_GAME.bat.width, BAT_GAME.bat.height);
-  } else {
-    ctx.fillStyle = '#f0c040';
-    ctx.fillRect(BAT_GAME.bat.x, BAT_GAME.bat.y, BAT_GAME.bat.width, BAT_GAME.bat.height);
-    ctx.fillStyle = '#0a0a0f';
-    ctx.fillRect(BAT_GAME.bat.x + 3, BAT_GAME.bat.y + 4, BAT_GAME.bat.width - 6, BAT_GAME.bat.height - 8);
-    ctx.strokeStyle = '#f8d86a';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(BAT_GAME.bat.x + 2, BAT_GAME.bat.y + 2, BAT_GAME.bat.width - 4, BAT_GAME.bat.height - 4);
-  }
-  
-  if (BAT_GAME.gameOver) {
-    ctx.fillStyle = 'rgba(0,0,0,0.65)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#f0c040';
-    ctx.font = 'bold 20px Share Tech Mono';
-    ctx.textAlign = 'center';
-    ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 12);
-    ctx.font = '12px Share Tech Mono';
-    ctx.fillText('Click Start or press Space to play again', canvas.width / 2, canvas.height / 2 + 14);
   }
 }
 
