@@ -506,7 +506,7 @@ function renderAboutDisplay() {
   const skillsContainer = document.getElementById('skills-display');
   if (skillsContainer && PORTFOLIO.skills) {
     skillsContainer.innerHTML = PORTFOLIO.skills.map((s, i) => `
-      <div class="skill-row" style="animation-delay: ${i * 0.08}s">
+      <div class="skill-row" style="animation-delay: ${i * 0.08}s" onmouseenter="highlightSkill(this)" onmouseleave="unhighlightSkill(this)">
         <div class="skill-header">
           <span class="skill-icon">${s.icon}</span>
           <span class="skill-name">${escHtml(s.name)}</span>
