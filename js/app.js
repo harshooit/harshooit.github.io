@@ -1,28 +1,36 @@
 // ===== DEVSHELL OS — HARSHIT JADHAV PORTFOLIO =====
 // Read-only portfolio. All data hardcoded below.
 
-// ---- GOOGLE AI GENERATIVE CONFIG ----
 // ---- HARDCODED PORTFOLIO DATA ----
 const PORTFOLIO = {
   about: {
-    name:       'Harshit Prabhakar Jadhav',
-    birthDate:  '2007-09-08',   // YYYY-MM-DD — age computed live
-    location:   'Pune, India',
-    occupation: 'ECE 1st Year Student',
-    college:    'Engineering (ECE)',
-    interests:  'AI, Embedded Systems, Cloud, Crypto, Tech Innovation',
-    resumeUrl:  '',  // Add your resume PDF path here, e.g. 'media/resume.pdf'
+    name: 'Harshit Prabhakar Jadhav',
+    birthDate: '2007-09-08',
+    gender: 'Male',
+    location: 'Pune, India',
+    college: 'Shri Dharmasthala Manjunatheshwara College of Engineering and Technology (SDMCET), Dharwad',
+    degree: 'B.E. — Electronics & Communication Engineering',
+    year: '1st Year',
+    headline: 'Electronics & Communication Engineering Student · Aspiring AI & Software Developer',
+    focusAreas: 'Software Development, Artificial Intelligence, Embedded Systems, ECE, Cloud & Emerging Tech',
+    openToWork: true,
+    resumeUrl: '',
+    summary: [
+      'I am an 18-year-old Electronics and Communication Engineering student at Shri Dharmasthala Manjunatheshwara College of Engineering and Technology (SDMCET), Dharwad, based in Pune, India. My interests span electronics, software development, and artificial intelligence — bridging hardware fundamentals with code that ships.',
+      'A curious engineer driven by problem-solving, I enjoy transforming ideas into intelligent, practical systems — from embedded circuits and computer vision to cloud and application-level projects. I am open to internships, collaborations, freelance work, and any role where I can learn and contribute across technology, AI, and the wider ECE landscape.',
+      'I approach new tools, domains, and challenges with enthusiasm and adaptability. Always learning, always building — I am actively seeking opportunities to grow alongside teams and projects that push what is possible, one line of code at a time.',
+    ],
   },
 
   skills: [
-    { name: 'Python',           level: 85, icon: '🐍' },
-    { name: 'Arduino / ESP32',  level: 90, icon: '🔌' },
-    { name: 'Computer Vision',  level: 75, icon: '👁️' },
-    { name: 'AI / ML',          level: 70, icon: '🤖' },
-    { name: 'Cloud (Azure)',    level: 65, icon: '☁️' },
-    { name: 'C / C++',          level: 80, icon: '⚙️' },
-    { name: 'Web Dev',          level: 70, icon: '🌐' },
-    { name: 'Circuit Design',   level: 85, icon: '🔧' },
+    { name: 'Python', level: 85, icon: '🐍' },
+    { name: 'Arduino / ESP32', level: 90, icon: '🔌' },
+    { name: 'Computer Vision', level: 75, icon: '👁️' },
+    { name: 'AI / ML', level: 70, icon: '🤖' },
+    { name: 'Cloud (Azure)', level: 65, icon: '☁️' },
+    { name: 'C / C++', level: 80, icon: '⚙️' },
+    { name: 'Web Dev', level: 70, icon: '🌐' },
+    { name: 'Circuit Design', level: 85, icon: '🔧' },
   ],
 
   projects: [
@@ -43,7 +51,7 @@ const PORTFOLIO = {
       tags: 'Electronics, Analog Circuits, Resistors, Capacitors',
       url: '',
       images: [],
-      video: 'media/clap_switch.mp4',  // Place your clap switch video here
+      video: 'media/clap_switch.mp4',
     },
     {
       id: 3,
@@ -53,7 +61,7 @@ const PORTFOLIO = {
       tags: 'Arduino UNO, Robotics, IR Sensors, Embedded Systems',
       url: '',
       images: [],
-      video: 'media/line_follower.mp4',  // Place your line follower video here
+      video: 'media/line_follower.mp4',
     },
     {
       id: 4,
@@ -68,42 +76,42 @@ const PORTFOLIO = {
 
   hobbies: {
     games: [
-      { name: 'The Walking Dead Series', emoji: '🧟', note: 'Clementine forever.',                           href: 'https://store.steampowered.com/app/207610/' },
-      { name: 'Red Dead Redemption 2',   emoji: '🤠', note: 'Greatest open world ever made.',                href: 'https://store.steampowered.com/app/1174180/' },
-      { name: 'Cyberpunk 2077',          emoji: '🌃', note: 'Welcome to Night City.',                        href: 'https://store.steampowered.com/app/1091500/' },
-      { name: "Assassin's Creed Series", emoji: '🗡️', note: 'Nothing is true, everything is permitted.',    href: 'https://store.steampowered.com/franchise/assassinscreed' },
+      { name: 'The Walking Dead Series', emoji: '🧟', note: 'Clementine forever.', href: 'https://store.steampowered.com/app/207610/' },
+      { name: 'Red Dead Redemption 2', emoji: '🤠', note: 'Greatest open world ever made.', href: 'https://store.steampowered.com/app/1174180/' },
+      { name: 'Cyberpunk 2077', emoji: '🌃', note: 'Welcome to Night City.', href: 'https://store.steampowered.com/app/1091500/' },
+      { name: "Assassin's Creed Series", emoji: '🗡️', note: 'Nothing is true, everything is permitted.', href: 'https://store.steampowered.com/franchise/assassinscreed' },
     ],
     movies: [
-      { name: 'Interstellar',          emoji: '🚀', note: 'Do not go gentle into that good night.',  href: 'https://www.imdb.com/title/tt0816692/' },
-      { name: 'The Matrix',            emoji: '💊', note: 'There is no spoon.',                     href: 'https://www.imdb.com/title/tt0133093/' },
-      { name: 'Inception',             emoji: '🌀', note: 'You mustn\'t be afraid to dream bigger.', href: 'https://www.imdb.com/title/tt1375666/' },
-      { name: 'Oppenheimer',           emoji: '☢️', note: 'Now I am become Death.',                  href: 'https://www.imdb.com/title/tt15398776/' },
-      { name: 'Fight Club',            emoji: '🥊', note: 'First rule: you do not talk about it.',   href: 'https://www.imdb.com/title/tt0137523/' },
-      { name: 'Inglourious Basterds',  emoji: '🎬', note: 'Bingo! That\'s a bingo!',                href: 'https://www.imdb.com/title/tt0361748/' },
-      { name: 'The Social Network',    emoji: '💻', note: 'A million dollars isn\'t cool.',          href: 'https://www.imdb.com/title/tt1285016/' },
-      { name: 'Se7en',                 emoji: '🔦', note: "What's in the box?!",                    href: 'https://www.imdb.com/title/tt0114369/' },
+      { name: 'Interstellar', emoji: '🚀', note: 'Do not go gentle into that good night.', href: 'https://www.imdb.com/title/tt0816692/' },
+      { name: 'The Matrix', emoji: '💊', note: 'There is no spoon.', href: 'https://www.imdb.com/title/tt0133093/' },
+      { name: 'Inception', emoji: '🌀', note: 'You mustn\'t be afraid to dream bigger.', href: 'https://www.imdb.com/title/tt1375666/' },
+      { name: 'Oppenheimer', emoji: '☢️', note: 'Now I am become Death.', href: 'https://www.imdb.com/title/tt15398776/' },
+      { name: 'Fight Club', emoji: '🥊', note: 'First rule: you do not talk about it.', href: 'https://www.imdb.com/title/tt0137523/' },
+      { name: 'Inglourious Basterds', emoji: '🎬', note: 'Bingo! That\'s a bingo!', href: 'https://www.imdb.com/title/tt0361748/' },
+      { name: 'The Social Network', emoji: '💻', note: 'A million dollars isn\'t cool.', href: 'https://www.imdb.com/title/tt1285016/' },
+      { name: 'Se7en', emoji: '🔦', note: "What's in the box?!", href: 'https://www.imdb.com/title/tt0114369/' },
     ],
     series: [
-      { name: 'Breaking Bad',       emoji: '🧪', note: 'I am the one who knocks.',     href: 'https://www.imdb.com/title/tt0903747/' },
-      { name: 'Friends',            emoji: '☕', note: 'Could it BE any better?',      href: 'https://www.imdb.com/title/tt0108778/' },
-      { name: 'Game of Thrones',    emoji: '👑', note: 'Winter is coming.',             href: 'https://www.imdb.com/title/tt0944947/' },
-      { name: 'Chernobyl',          emoji: '☣️', note: 'What is the cost of lies?',    href: 'https://www.imdb.com/title/tt7366338/' },
-      { name: 'Brooklyn Nine-Nine', emoji: '🚔', note: 'Cool cool cool cool cool.',    href: 'https://www.imdb.com/title/tt2467372/' },
+      { name: 'Breaking Bad', emoji: '🧪', note: 'I am the one who knocks.', href: 'https://www.imdb.com/title/tt0903747/' },
+      { name: 'Friends', emoji: '☕', note: 'Could it BE any better?', href: 'https://www.imdb.com/title/tt0108778/' },
+      { name: 'Game of Thrones', emoji: '👑', note: 'Winter is coming.', href: 'https://www.imdb.com/title/tt0944947/' },
+      { name: 'Chernobyl', emoji: '☣️', note: 'What is the cost of lies?', href: 'https://www.imdb.com/title/tt7366338/' },
+      { name: 'Brooklyn Nine-Nine', emoji: '🚔', note: 'Cool cool cool cool cool.', href: 'https://www.imdb.com/title/tt2467372/' },
     ],
     music: [
-      { name: 'TV Girl',           emoji: '📺', note: 'Who really cares?',              href: 'https://open.spotify.com/artist/4NZvixzsSefsNiIqXn0NDe' },
-      { name: 'Arctic Monkeys',    emoji: '🐒', note: 'Do I wanna know?',               href: 'https://open.spotify.com/artist/7Ln80lUS6He07XvHI8qqHH' },
-      { name: 'Chase Atlantic',    emoji: '🌊', note: 'Into it.',                        href: 'https://open.spotify.com/artist/7wbkd7VbDOlDpDUFORxitY' },
-      { name: 'The Neighbourhood', emoji: '🖤', note: 'Sweater Weather hits different.', href: 'https://open.spotify.com/artist/77SW9BnxLY8rJ0RB2if4oH' },
+      { name: 'TV Girl', emoji: '📺', note: 'Who really cares?', href: 'https://open.spotify.com/artist/0Y6dVaC9DZtPNH4591M42W' },
+      { name: 'Arctic Monkeys', emoji: '🐒', note: 'Do I wanna know?', href: 'https://open.spotify.com/artist/7Ln80lUS6He07XvHI8qqHH' },
+      { name: 'Chase Atlantic', emoji: '🌊', note: 'Into it.', href: 'https://open.spotify.com/artist/7wbkd7VbDOlDpDUFORxitY' },
+      { name: 'The Neighbourhood', emoji: '🖤', note: 'Sweater Weather hits different.', href: 'https://open.spotify.com/artist/77SW9BnxLY8rJ0RciFqkHh' },
     ],
   },
 
   contact: {
-    email:     'hpjadhav3000@gmail.com',
-    linkedin:  'https://www.linkedin.com/in/harshit-jadhav-429960357/',
-    github:    'https://github.com/harshooit',
+    email: 'hpjadhav3000@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/harshit-jadhav-429960357/',
+    github: 'https://github.com/harshooit',
     instagram: 'https://www.instagram.com/harsho_oit/',
-    discord:   'harsho_oit',
+    discord: 'harsho_oit',
   },
 };
 
@@ -113,7 +121,6 @@ window.addEventListener('DOMContentLoaded', () => {
   renderProjectsGrid();
   renderHobbiesGrid();
   renderContactDisplay();
-  // Boot will now be started by the user clicking 'Power On'
   updateClock();
   setInterval(updateClock, 1000);
   document.addEventListener('click', closeSideEffects);
@@ -132,8 +139,7 @@ const BOOT_MSGS = [
 function runBoot() {
   const bar = document.getElementById('boot-bar');
   const msgs = document.getElementById('boot-messages');
-  let pct = 0;
-  let msgIdx = 0;
+  let pct = 0, msgIdx = 0;
 
   function addMsg() {
     if (msgIdx < BOOT_MSGS.length) {
@@ -166,20 +172,13 @@ function showDesktop() {
   initOsMenus();
   setTimeout(() => showToast('> Welcome, developer. DevShell OS is online.', 3500), 600);
 
-  // Start wallpaper video
   const video = document.getElementById('wallpaper-video');
-  if (video) {
-    video.play().catch(() => {
-      console.log('Video autoplay blocked, will start on user interaction');
-    });
-  }
+  if (video) video.play().catch(() => { });
 
-  // Music starts only after boot (desktop visible). Muted prime during Power On keeps playback allowed.
   ensureBackgroundAudio(true);
 }
 
-// ---- BACKGROUND MUSIC (user-gesture safe) ----
-/** Called on Power On click: silent playback unlocks audio for later unmute after boot. */
+// ---- BACKGROUND MUSIC ----
 function primeMusicDuringPowerOn() {
   const music = document.getElementById('bg-music');
   if (!music) return;
@@ -187,7 +186,7 @@ function primeMusicDuringPowerOn() {
   music.muted = true;
   music.currentTime = 0;
   const p = music.play();
-  if (p && typeof p.catch === 'function') p.catch(() => {});
+  if (p && typeof p.catch === 'function') p.catch(() => { });
 }
 
 function ensureBackgroundAudio(resetToStart) {
@@ -197,9 +196,7 @@ function ensureBackgroundAudio(resetToStart) {
   music.muted = false;
   music.volume = 0.07;
   const p = music.play();
-  if (p && typeof p.catch === 'function') {
-    p.catch(() => attachMusicResumeFallback());
-  }
+  if (p && typeof p.catch === 'function') p.catch(() => attachMusicResumeFallback());
   syncMusicDiscVisual();
 }
 
@@ -213,12 +210,10 @@ function attachMusicResumeFallback() {
     if (!m || m.muted) return;
     const playP = m.play();
     if (playP && typeof playP.then === 'function') {
-      playP
-        .then(() => {
-          document.removeEventListener('pointerdown', resume, opts);
-          musicResumeAttached = false;
-        })
-        .catch(() => {});
+      playP.then(() => {
+        document.removeEventListener('pointerdown', resume, opts);
+        musicResumeAttached = false;
+      }).catch(() => { });
     }
   };
   document.addEventListener('pointerdown', resume, opts);
@@ -237,7 +232,6 @@ function syncMusicDiscVisual() {
   }
 }
 
-// ---- TOGGLE MUSIC MUTE ----
 function toggleMusicMute() {
   const music = document.getElementById('bg-music');
   const video = document.getElementById('wallpaper-video');
@@ -247,8 +241,8 @@ function toggleMusicMute() {
     if (music.muted) {
       showToast('🔇 Audio muted', 1500);
     } else {
-      music.play().catch(() => {});
-      if (video) video.play().catch(() => {});
+      music.play().catch(() => { });
+      if (video) video.play().catch(() => { });
       showToast('🔊 Audio unmuted', 1500);
     }
     syncMusicDiscVisual();
@@ -258,10 +252,10 @@ function toggleMusicMute() {
 // ---- CLOCK ----
 function updateClock() {
   const now = new Date();
-  const h = String(now.getHours()).padStart(2,'0');
-  const m = String(now.getMinutes()).padStart(2,'0');
-  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const h = String(now.getHours()).padStart(2, '0');
+  const m = String(now.getMinutes()).padStart(2, '0');
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const dateStr = `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]}`;
   document.getElementById('taskbar-clock').innerHTML =
     `<div class="clock-time">${h}:${m}</div><div class="clock-date">${dateStr}</div>`;
@@ -270,10 +264,10 @@ function updateClock() {
 // ---- AGE CALCULATOR ----
 function calcAge(birthDateStr) {
   const birth = new Date(birthDateStr);
-  const now   = new Date();
-  let years  = now.getFullYear() - birth.getFullYear();
-  let months = now.getMonth()    - birth.getMonth();
-  let days   = now.getDate()     - birth.getDate();
+  const now = new Date();
+  let years = now.getFullYear() - birth.getFullYear();
+  let months = now.getMonth() - birth.getMonth();
+  let days = now.getDate() - birth.getDate();
   if (days < 0) {
     months--;
     const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
@@ -283,7 +277,9 @@ function calcAge(birthDateStr) {
   return { years, months, days };
 }
 
-// ---- WINDOW MANAGEMENT ----
+// ============================
+// ===== WINDOW MANAGEMENT ====
+// ============================
 let zTop = 20;
 const windowMeta = {};
 
@@ -291,17 +287,22 @@ function openWindow(name) {
   const id = `win-${name}`;
   const win = document.getElementById(id);
   if (!win) return;
-  win.style.display = 'block';
+
+  // FIX: must be 'flex' so the flex-column layout activates and window-body can scroll
+  win.style.display = 'flex';
   win.style.zIndex = ++zTop;
   windowMeta[id] = windowMeta[id] || {};
   windowMeta[id].minimized = false;
   addTaskbarBtn(id, name);
   closeStartMenu();
   setActiveWindow(id);
+
+  // Re-attach wheel listeners every time a window opens (covers dynamically-added content)
+  win.querySelectorAll('.window-body, .window-body-stack, #about-view, #hobbies-list-view, #project-detail-view, #projects-list-view, #contact-display-view').forEach(attachWheelScroll);
+
   win.classList.remove('window-pop');
   void win.offsetWidth;
   win.classList.add('window-pop');
-  if (name === 'about') setTimeout(typeBio, 200);
 }
 
 function closeWindow(id) {
@@ -325,10 +326,20 @@ function maximizeWindow(id) {
   if (win.classList.contains('maximized')) {
     win.classList.remove('maximized');
     const prev = windowMeta[id]?.maxPrev;
-    if (prev) { win.style.top=prev.top; win.style.left=prev.left; win.style.width=prev.width; win.style.height=prev.height||''; }
+    if (prev) {
+      win.style.top = prev.top;
+      win.style.left = prev.left;
+      win.style.width = prev.width;
+      win.style.height = prev.height || '';
+    }
   } else {
     windowMeta[id] = windowMeta[id] || {};
-    windowMeta[id].maxPrev = { top:win.style.top, left:win.style.left, width:win.style.width, height:win.style.height };
+    windowMeta[id].maxPrev = {
+      top: win.style.top,
+      left: win.style.left,
+      width: win.style.width,
+      height: win.style.height,
+    };
     win.classList.add('maximized');
   }
 }
@@ -336,10 +347,10 @@ function maximizeWindow(id) {
 function addTaskbarBtn(id, name) {
   if (document.getElementById('tbtn-' + id)) return;
   const labels = {
-    'win-about':'🧬 About',
-    'win-projects':'💻 Projects',
-    'win-hobbies':'⭐ Favourites',
-    'win-contact':'📡 Contact',
+    'win-about': '🧬 About',
+    'win-projects': '💻 Projects',
+    'win-hobbies': '⭐ Favourites',
+    'win-contact': '📡 Contact',
   };
   const btn = document.createElement('button');
   btn.className = 'taskbar-btn active';
@@ -364,11 +375,16 @@ function toggleWindowFromTaskbar(id) {
   if (!win) return;
   const meta = windowMeta[id] || {};
   if (win.style.display === 'none') {
-    win.style.display = 'block';
+    // FIX: must be 'flex' here too
+    win.style.display = 'flex';
     win.style.zIndex = ++zTop;
     meta.minimized = false;
     updateTaskbarBtn(id, false);
     setActiveWindow(id);
+
+    // Re-attach wheel listeners after restore
+    win.querySelectorAll('.window-body, .window-body-stack, #about-view, #hobbies-list-view, #project-detail-view, #projects-list-view, #contact-display-view').forEach(attachWheelScroll);
+
     win.classList.remove('window-task-pop');
     void win.offsetWidth;
     win.classList.add('window-task-pop');
@@ -394,7 +410,7 @@ function startDrag(e, id) {
 function doDrag(e) {
   if (!dragData) return;
   dragData.win.style.left = (dragData.origLeft + e.clientX - dragData.startX) + 'px';
-  dragData.win.style.top  = (dragData.origTop  + e.clientY - dragData.startY) + 'px';
+  dragData.win.style.top = (dragData.origTop + e.clientY - dragData.startY) + 'px';
 }
 function stopDrag() {
   dragData = null;
@@ -423,31 +439,23 @@ function confirmShutdown() {
   document.getElementById('desktop').style.display = 'none';
   document.getElementById('poweroff-screen').style.display = 'flex';
 }
-// ---- FULLSCREEN (must run inside a user gesture — Power On qualifies) ----
+
+// ---- FULLSCREEN ----
 function requestAppFullscreen() {
   if (document.fullscreenElement || document.webkitFullscreenElement) return;
   const root = document.documentElement;
-  const req =
-    root.requestFullscreen ||
-    root.webkitRequestFullscreen ||
-    root.mozRequestFullScreen ||
-    root.msRequestFullscreen;
+  const req = root.requestFullscreen || root.webkitRequestFullscreen || root.mozRequestFullScreen || root.msRequestFullscreen;
   if (!req) return;
-  try {
-    const p = req.call(root);
-    if (p && typeof p.catch === 'function') p.catch(() => {});
-  } catch (_) {}
+  try { const p = req.call(root); if (p && typeof p.catch === 'function') p.catch(() => { }); } catch (_) { }
 }
 
 function powerOn() {
   requestAppFullscreen();
   primeMusicDuringPowerOn();
-
   document.getElementById('poweroff-screen').style.display = 'none';
   document.getElementById('boot-screen').style.display = 'flex';
   document.getElementById('boot-bar').style.width = '0%';
   document.getElementById('boot-messages').innerHTML = '';
-
   setTimeout(runBoot, 200);
 }
 
@@ -458,27 +466,42 @@ function renderAboutDisplay() {
   const a = PORTFOLIO.about;
   const age = calcAge(a.birthDate);
 
-  // Age display
   document.getElementById('age-display').innerHTML =
     `<span class="age-num">${age.years}</span><span class="age-unit">y</span> ` +
     `<span class="age-num">${age.months}</span><span class="age-unit">m</span> ` +
     `<span class="age-num">${age.days}</span><span class="age-unit">d</span>`;
 
   const info = document.getElementById('about-info-display');
-  const rows = [
-    { label: 'Name',       value: a.name       },
-    { label: 'Location',   value: a.location    },
-    { label: 'Education',  value: a.occupation  },
-    { label: 'Interests',  value: a.interests   },
-  ];
-  info.innerHTML = rows.map(r => `
-    <div class="about-info-row">
-      <span class="about-label">${escHtml(r.label)}:</span>
-      <span class="about-value">${escHtml(r.value)}</span>
-    </div>
-  `).join('');
+  const openBadge = a.openToWork
+    ? '<div class="about-open-badge"><span class="about-open-dot"></span>Open to opportunities</div>'
+    : '';
 
-  // Skills section
+  const rows = [
+    { label: 'Name', value: a.name },
+    { label: 'Profile', value: `${age.years} · ${a.gender}` },
+    { label: 'Location', value: a.location },
+    { label: 'Degree', value: `${a.degree} (${a.year})` },
+    { label: 'Institution', value: a.college },
+    { label: 'Focus Areas', value: a.focusAreas },
+    { label: 'Availability', value: 'Open to internships, projects & tech roles' },
+  ];
+
+  info.innerHTML = `
+    ${openBadge}
+    <p class="about-profile-headline">${escHtml(a.headline)}</p>
+    ${rows.map(r => `
+      <div class="about-info-row">
+        <span class="about-label">${escHtml(r.label)}:</span>
+        <span class="about-value">${escHtml(r.value)}</span>
+      </div>
+    `).join('')}
+  `;
+
+  const summaryEl = document.getElementById('about-summary');
+  if (summaryEl && Array.isArray(a.summary)) {
+    summaryEl.innerHTML = a.summary.map(p => `<p class="about-summary-p">${escHtml(p)}</p>`).join('');
+  }
+
   const skillsContainer = document.getElementById('skills-display');
   if (skillsContainer && PORTFOLIO.skills) {
     skillsContainer.innerHTML = PORTFOLIO.skills.map((s, i) => `
@@ -495,7 +518,6 @@ function renderAboutDisplay() {
     `).join('');
   }
 
-  // Resume button
   const resumeBtn = document.getElementById('resume-btn');
   if (resumeBtn) {
     if (a.resumeUrl) {
@@ -519,7 +541,7 @@ function renderProjectsGrid() {
       ? `<img src="${p.images[0]}" alt="${escHtml(p.title)}">`
       : `<div class="project-no-img">${p.emoji}<span>Image Coming Soon</span></div>`;
     return `
-      <div class="project-card" ondblclick="viewProject(${p.id})" onclick="viewProject(${p.id})">
+      <div class="project-card" onclick="viewProject(${p.id})">
         <div class="project-card-thumb">${thumb}</div>
         <div class="project-card-title">${escHtml(p.title)}</div>
         ${p.tags ? `<div class="project-card-tags">${escHtml(p.tags)}</div>` : ''}
@@ -537,10 +559,9 @@ function viewProject(id) {
   const detail = document.getElementById('project-detail-content');
 
   const imagesHtml = proj.images?.length
-    ? `<div class="detail-images">${proj.images.map(src=>`<img src="${src}" onclick="openImageFull('${src}')">`).join('')}</div>`
+    ? `<div class="detail-images">${proj.images.map(src => `<img src="${src}" onclick="openImageFull('${src}')">`).join('')}</div>`
     : `<div class="detail-img-placeholder"><div class="placeholder-icon">${proj.emoji}</div><div class="placeholder-label">📷 Image Coming Soon</div></div>`;
 
-  // Video section
   let videoHtml = '';
   if (proj.video !== undefined) {
     videoHtml = `
@@ -560,7 +581,7 @@ function viewProject(id) {
     `;
   }
 
-  const tags = proj.tags ? proj.tags.split(',').map(t=>`<span class="tag-chip">${escHtml(t.trim())}</span>`).join('') : '';
+  const tags = proj.tags ? proj.tags.split(',').map(t => `<span class="tag-chip">${escHtml(t.trim())}</span>`).join('') : '';
   const linkHtml = proj.url
     ? `<a href="${escHtml(proj.url)}" target="_blank" rel="noopener" class="win-btn link-btn">🔗 Open Project</a>`
     : '';
@@ -574,37 +595,38 @@ function viewProject(id) {
     ${linkHtml}
   `;
 
-  // Setup video error handling to show fallback
+  // Video error → show fallback
   if (proj.video !== undefined) {
     const videoEl = detail.querySelector('.detail-video');
     const fallbackEl = detail.querySelector(`#video-fallback-${proj.id}`);
     if (videoEl && fallbackEl) {
-      videoEl.addEventListener('error', () => {
-        videoEl.style.display = 'none';
-        fallbackEl.style.display = 'flex';
-      }, true);
-      // Also check source error
+      const showFallback = () => { videoEl.style.display = 'none'; fallbackEl.style.display = 'flex'; };
+      videoEl.addEventListener('error', showFallback, true);
       const sourceEl = videoEl.querySelector('source');
-      if (sourceEl) {
-        sourceEl.addEventListener('error', () => {
-          videoEl.style.display = 'none';
-          fallbackEl.style.display = 'flex';
-        });
-      }
+      if (sourceEl) sourceEl.addEventListener('error', showFallback);
     }
   }
 
   document.getElementById('projects-list-view').style.display = 'none';
   document.getElementById('project-detail-view').style.display = 'block';
+
+  // FIX: reset scroll and attach wheel listener to the detail view
+  const detailView = document.getElementById('project-detail-view');
+  if (detailView) {
+    detailView.scrollTop = 0;
+    attachWheelScroll(detailView);
+  }
 }
 
 function backToProjects() {
   document.getElementById('project-detail-view').style.display = 'none';
   document.getElementById('projects-list-view').style.display = 'block';
+  const listView = document.getElementById('projects-list-view');
+  if (listView) attachWheelScroll(listView);
 }
 
 function openImageFull(src) {
-  const w = window.open('','_blank','width=800,height=600');
+  const w = window.open('', '_blank', 'width=800,height=600');
   w.document.write(`<body style="margin:0;background:#000;display:flex;align-items:center;justify-content:center;height:100vh"><img src="${src}" style="max-width:100%;max-height:100%"></body>`);
 }
 
@@ -627,7 +649,7 @@ function renderHobbiesGrid() {
         </div>
         <div class="hobby-cat-items">
           ${items.map((i, idx) => {
-            const inner = `
+      const inner = `
               <span class="hobby-item-emoji">${i.emoji}</span>
               <div class="hobby-item-info">
                 <div class="hobby-item-name">${escHtml(i.name)}</div>
@@ -635,21 +657,21 @@ function renderHobbiesGrid() {
               </div>
               ${i.href ? `<span class="hobby-item-link-icon">↗</span>` : ''}
             `;
-            const style = `style="animation-delay: ${(ci * 0.1) + (idx * 0.05)}s"`;
-            return i.href
-              ? `<a class="hobby-item hobby-item-link hobby-item-reveal" ${style} href="${escHtml(i.href)}" target="_blank" rel="noopener">${inner}</a>`
-              : `<div class="hobby-item hobby-item-reveal" ${style}>${inner}</div>`;
-          }).join('')}
+      const style = `style="animation-delay: ${(ci * 0.1) + (idx * 0.05)}s"`;
+      return i.href
+        ? `<a class="hobby-item hobby-item-link hobby-item-reveal" ${style} href="${escHtml(i.href)}" target="_blank" rel="noopener">${inner}</a>`
+        : `<div class="hobby-item hobby-item-reveal" ${style}>${inner}</div>`;
+    }).join('')}
         </div>
       </div>
     `;
   }
 
   grid.innerHTML =
-    makeCategory('🎮', 'Video Games',  h.games,  'STEAM')   +
-    makeCategory('🎬', 'Movies',        h.movies, 'IMDB')    +
-    makeCategory('📺', 'Web Series',    h.series, 'IMDB')    +
-    makeCategory('🎵', 'Music Artists', h.music,  'SPOTIFY');
+    makeCategory('🎮', 'Video Games', h.games, 'STEAM') +
+    makeCategory('🎬', 'Movies', h.movies, 'IMDB') +
+    makeCategory('📺', 'Web Series', h.series, 'IMDB') +
+    makeCategory('🎵', 'Music Artists', h.music, 'SPOTIFY');
 }
 
 // ============================
@@ -658,11 +680,11 @@ function renderHobbiesGrid() {
 function renderContactDisplay() {
   const c = PORTFOLIO.contact;
   const links = [
-    { icon: '📧', label: 'Email',     value: c.email,     href: `mailto:${c.email}` },
-    { icon: '💼', label: 'LinkedIn',  value: 'harshit-jadhav-429960357', href: c.linkedin },
-    { icon: '🐙', label: 'GitHub',    value: 'harshooit',  href: c.github    },
+    { icon: '📧', label: 'Email', value: c.email, href: `mailto:${c.email}` },
+    { icon: '💼', label: 'LinkedIn', value: 'harshit-jadhav-429960357', href: c.linkedin },
+    { icon: '🐙', label: 'GitHub', value: 'harshooit', href: c.github },
     { icon: '📸', label: 'Instagram', value: '@harsho_oit', href: c.instagram },
-    { icon: '🎮', label: 'Discord',   value: c.discord,   href: `https://discord.com/users/${c.discord}` },
+    { icon: '🎮', label: 'Discord', value: c.discord, href: `https://discord.com/users/${c.discord}` },
   ].filter(l => l.value);
 
   const display = document.getElementById('contact-display');
@@ -691,11 +713,11 @@ function renderContactDisplay() {
 function escHtml(str) {
   if (!str) return '';
   return String(str)
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&#39;');
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 // ============================
@@ -735,7 +757,9 @@ function showToast(msg, duration = 3000) {
   setTimeout(() => t.classList.remove('toast-show'), duration);
 }
 
-// ---- Windows-style menu bars (drop-downs) ----
+// ============================
+// ===== OS MENU BARS =========
+// ============================
 let osMenuListenersAttached = false;
 
 function initOsMenus() {
@@ -777,9 +801,7 @@ function closeAllOsMenuDropdowns() {
   document.querySelectorAll('.menu-pull-wrap.open').forEach((w) => w.classList.remove('open'));
 }
 
-function osMenuCloseDrop() {
-  closeAllOsMenuDropdowns();
-}
+function osMenuCloseDrop() { closeAllOsMenuDropdowns(); }
 
 function renderOsMenuBarHtml(winId) {
   return `<div class="menu-pull-wrap">
@@ -869,8 +891,6 @@ function viewMenuFullScreenHint() {
   showToast('Use the browser full-screen control or press F11 in most browsers.', 3200);
 }
 
-
-
 // ============================
 // ===== CONTEXT MENU =========
 // ============================
@@ -885,10 +905,10 @@ function showCtxMenu(e) {
   const desktop = document.getElementById('desktop');
   const dr = desktop.getBoundingClientRect();
   let x = e.clientX - dr.left, y = e.clientY - dr.top;
-  if (x + 200 > dr.width)  x = dr.width  - 205;
+  if (x + 200 > dr.width) x = dr.width - 205;
   if (y + 220 > dr.height) y = dr.height - 225;
   m.style.left = x + 'px';
-  m.style.top  = y + 'px';
+  m.style.top = y + 'px';
   m.style.display = 'block';
   requestAnimationFrame(() => m.classList.add('ctx-show'));
 }
@@ -896,23 +916,6 @@ function hideCtxMenu() {
   const m = document.getElementById('context-menu');
   m.classList.remove('ctx-show');
   setTimeout(() => { m.style.display = 'none'; }, 150);
-}
-
-// ============================
-// ===== BIO TYPING ===========
-// ============================
-const BIO_TEXT = 'A developer from Pune. ECE freshman building in embedded systems, computer vision, cloud, and full-stack tooling. Always compiling ideas, shipping projects, and pushing the stack forward';
-let bioTyped = false;
-function typeBio() {
-  const el = document.getElementById('bio-typed');
-  if (!el || bioTyped) return;
-  bioTyped = true;
-  el.textContent = '';
-  let i = 0;
-  const iv = setInterval(() => {
-    el.textContent += BIO_TEXT[i++];
-    if (i >= BIO_TEXT.length) clearInterval(iv);
-  }, 18);
 }
 
 // ============================
@@ -926,12 +929,12 @@ function initRain() {
   resize();
   window.addEventListener('resize', resize);
 
-  const drops = Array.from({length: 120}, () => ({
+  const drops = Array.from({ length: 120 }, () => ({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     len: Math.random() * 22 + 10,
     spd: Math.random() * 2.5 + 1,
-    op:  Math.random() * 0.18 + 0.04,
+    op: Math.random() * 0.18 + 0.04,
   }));
 
   function draw() {
@@ -952,7 +955,7 @@ function initRain() {
 }
 
 // ============================
-// ===== TERMINAL EASTER EGG ===
+// ===== EASTER EGG ===========
 // ============================
 function initEasterEgg() {
   let buf = '';
@@ -972,6 +975,9 @@ function triggerTerminalFlash() {
   setTimeout(() => el.classList.remove('term-flash-active'), 2500);
 }
 
+// ============================
+// ===== DESKTOP INIT =========
+// ============================
 let desktopInteractivityReady = false;
 function initDesktopInteractivity() {
   if (desktopInteractivityReady) return;
@@ -986,20 +992,19 @@ function initDesktopInteractivity() {
       e.target.closest('#music-disc') ||
       e.target.closest('#context-menu') ||
       e.target.closest('.desktop-icon')
-    ) {
-      return;
-    }
+    ) return;
     spawnClickRipple(desktop, e.clientX, e.clientY);
   });
 
   desktop.querySelectorAll('.window').forEach((win) => {
     win.addEventListener('mousedown', () => {
       if (!win.id || win.classList.contains('shutdown-window')) return;
-      if (win.style.display === 'block') setActiveWindow(win.id);
+      if (win.style.display !== 'none') setActiveWindow(win.id);
     });
   });
 
   document.addEventListener('keydown', desktopKeyShortcuts);
+  initWindowScrolling();
 }
 
 function spawnClickRipple(root, cx, cy) {
@@ -1016,7 +1021,6 @@ function desktopKeyShortcuts(e) {
   const desktop = document.getElementById('desktop');
   if (!desktop || desktop.style.display === 'none') return;
   const t = e.target;
-  if (t && (t.closest?.('input') || t.closest?.('textarea') || t.closest?.('[contenteditable]'))) return;
   if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT')) return;
   if (e.ctrlKey || e.metaKey || e.altKey) return;
 
@@ -1028,17 +1032,45 @@ function desktopKeyShortcuts(e) {
     }
   }
 
-
-  const map = {
-    Digit1: 'about',
-    Digit2: 'projects',
-    Digit3: 'hobbies',
-    Digit4: 'contact',
-  };
+  const map = { Digit1: 'about', Digit2: 'projects', Digit3: 'hobbies', Digit4: 'contact' };
   const win = map[e.code];
-  if (win) {
-    e.preventDefault();
-    openWindow(win);
-  }
+  if (win) { e.preventDefault(); openWindow(win); }
 }
 
+// ============================
+// ===== WINDOW SCROLLING =====
+// ============================
+/**
+ * FIX: targets all scrollable containers inside windows, including
+ * named inner views that receive dynamic content.
+ */
+function initWindowScrolling() {
+  const selectors = [
+    '.window-body',
+    '.window-body-stack',
+    '#about-view',
+    '#hobbies-list-view',
+    '#project-detail-view',
+    '#projects-list-view',
+    '#contact-display-view',
+  ];
+  document.querySelectorAll(selectors.join(', ')).forEach(attachWheelScroll);
+}
+
+/**
+ * Attaches a wheel listener so scroll-wheel works inside each window.
+ * Guard flag prevents double-attaching.
+ */
+function attachWheelScroll(el) {
+  if (!el || el._wheelAttached) return;
+  el._wheelAttached = true;
+  el.addEventListener('wheel', (e) => {
+    const canScrollDown = el.scrollTop + el.clientHeight < el.scrollHeight - 1;
+    const canScrollUp = el.scrollTop > 0;
+    if ((e.deltaY > 0 && canScrollDown) || (e.deltaY < 0 && canScrollUp)) {
+      el.scrollTop += e.deltaY;
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, { passive: false });
+}
