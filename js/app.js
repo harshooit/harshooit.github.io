@@ -170,6 +170,7 @@ function showDesktop() {
   initEasterEgg();
   initDesktopInteractivity();
   initOsMenus();
+  initAllEnhancements();
   setTimeout(() => showToast('> Welcome, developer. DevShell OS is online.', 3500), 600);
 
   const video = document.getElementById('wallpaper-video');
@@ -1074,3 +1075,739 @@ function attachWheelScroll(el) {
     }
   }, { passive: false });
 }
+
+// ============================
+// ===== SEARCH FUNCTIONALITY =
+// ============================
+let searchData = [];
+
+function initSearch() {
+  // Build search index
+  searchData = [];
+  
+  // Add projects
+  PORTFOLIO.projects.forEach(p => {
+    searchData.push({
+      type: 'Project',
+      title: p.title,
+      desc: p.desc,
+      tags: p.tags,
+      action: () => { openWindow('projects'); setTimeout(() => viewProject(p.id), 300); }
+    });
+  });
+  
+  // Add skills
+  PORTFOLIO.skills.forEach(s => {
+    searchData.push({
+      type: 'Skill',
+      title: s.name,
+      desc: `${s.level}% proficiency`,
+      action: () => openWindow('about')
+    });
+  });
+  
+  // Add contacts
+  Object.entries(PORTFOLIO.contact).forEach(([key, value]) => {
+    if (value) {
+      searchData.push({
+        type: 'Contact',
+        title: key.charAt(0).toUpperCase() + key.slice(1),
+        desc: value,
+        action: () => openWindow('contact')
+      });
+    }
+  });
+  
+  // Add hobbies
+  Object.entries(PORTFOLIO.hobbies).forEach(([category, items]) => {
+    items.forEach(item => {
+      searchData.push({
+        type: 'Hobby',
+        title: item.name,
+        desc: item.note,
+        action: () => openWindow('hobbies')
+      });
+    });
+  });
+  
+  const input = document.getElementById('search-input');
+  if (input) {
+    input.addEventListener('input', performSearch);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSearch();
+    });
+  }
+}
+
+function openSearch() {
+  const box = document.getElementById('search-box');
+  const input = document.getElementById('search-input');
+  box.style.display = 'block';
+  requestAnimationFrame(() => {
+    box.classList.add('search-show');
+    if (input) {
+      input.value = '';
+      input.focus();
+      performSearch();
+    }
+  });
+}
+
+function closeSearch() {
+  const box = document.getElementById('search-box');
+  box.classList.remove('search-show');
+  setTimeout(() => { box.style.display = 'none'; }, 200);
+}
+
+function performSearch() {
+  const input = document.getElementById('search-input');
+  const results = document.getElementById('search-results');
+  const query = input.value.toLowerCase().trim();
+  
+  if (!query) {
+    results.innerHTML = '<div class="search-no-results">Type to search across projects, skills, and more...</div>';
+    return;
+  }
+  
+  const matches = searchData.filter(item => {
+    const searchText = `${item.title} ${item.desc} ${item.tags || ''}`.toLowerCase();
+    return searchText.includes(query);
+  }).slice(0, 10);
+  
+  if (matches.length === 0) {
+    results.innerHTML = '<div class="search-no-results">No results found. Try different keywords.</div>';
+    return;
+  }
+  
+  results.innerHTML = matches.map(item => `
+    <div class="search-result-item" onclick='${item.action.toString().replace(/'/g, "\\'")}(); closeSearch();'>
+      <div class="search-result-type">${escHtml(item.type)}</div>
+      <div class="search-result-title">${escHtml(item.title)}</div>
+      <div>${escHtml(item.desc.substring(0, 80))}${item.desc.length > 80 ? '...' : ''}</div>
+    </div>
+  `).join('');
+}
+
+// ============================
+// ===== PERFORMANCE MONITOR ==
+// ============================
+let perfMonitorActive = false;
+let perfStartTime = Date.now();
+let perfFrameCount = 0;
+let perfLastTime = Date.now();
+
+function togglePerfMonitor() {
+  perfMonitorActive = !perfMonitorActive;
+  const monitor = document.getElementById('perf-monitor');
+  if (perfMonitorActive) {
+    monitor.classList.add('perf-show');
+    updatePerfMonitor();
+    showNotification('Performance Monitor', 'System monitoring enabled', 'success');
+  } else {
+    monitor.classList.remove('perf-show');
+    showNotification('Performance Monitor', 'System monitoring disabled', 'success');
+  }
+}
+
+function updatePerfMonitor() {
+  if (!perfMonitorActive) return;
+  
+  // FPS calculation
+  perfFrameCount++;
+  const now = Date.now();
+  if (now - perfLastTime >= 1000) {
+    const fps = Math.round(perfFrameCount * 1000 / (now - perfLastTime));
+    document.getElementById('perf-fps').textContent = fps;
+    perfFrameCount = 0;
+    perfLastTime = now;
+  }
+  
+  // Memory (if available)
+  if (performance.memory) {
+    const used = (performance.memory.usedJSHeapSize / 1048576).toFixed(1);
+    document.getElementById('perf-mem').textContent = `${used} MB`;
+  } else {
+    document.getElementById('perf-mem').textContent = 'N/A';
+  }
+  
+  // Uptime
+  const uptime = Math.floor((now - perfStartTime) / 1000);
+  const mins = Math.floor(uptime / 60);
+  const secs = uptime % 60;
+  document.getElementById('perf-uptime').textContent = 
+    `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  
+  // Window count
+  const windowCount = document.querySelectorAll('.window[style*="display: flex"]').length;
+  document.getElementById('perf-windows').textContent = windowCount;
+  
+  requestAnimationFrame(updatePerfMonitor);
+}
+
+// ============================
+// ===== NOTIFICATION SYSTEM ==
+// ============================
+let notificationId = 0;
+
+function showNotification(title, message, type = 'info', duration = 4000) {
+  const stack = document.getElementById('notification-stack');
+  const id = `notif-${notificationId++}`;
+  
+  const notif = document.createElement('div');
+  notif.className = `notification notification-${type}`;
+  notif.id = id;
+  notif.innerHTML = `
+    <button class="notification-close" onclick="closeNotification('${id}')">✕</button>
+    <div class="notification-title">${escHtml(title)}</div>
+    <div>${escHtml(message)}</div>
+  `;
+  
+  stack.appendChild(notif);
+  
+  if (duration > 0) {
+    setTimeout(() => closeNotification(id), duration);
+  }
+}
+
+function closeNotification(id) {
+  const notif = document.getElementById(id);
+  if (notif) {
+    notif.style.opacity = '0';
+    notif.style.transform = 'translateX(100px)';
+    setTimeout(() => notif.remove(), 300);
+  }
+}
+
+// ============================
+// ===== THEME TOGGLE =========
+// ============================
+let currentTheme = 'default';
+
+function toggleTheme() {
+  const themes = ['default', 'blue', 'purple', 'amber'];
+  const currentIndex = themes.indexOf(currentTheme);
+  currentTheme = themes[(currentIndex + 1) % themes.length];
+  
+  const root = document.documentElement;
+  
+  switch(currentTheme) {
+    case 'blue':
+      root.style.setProperty('--bat-gold', '#00d4ff');
+      root.style.setProperty('--bat-gold-dim', '#0088cc');
+      showNotification('Theme Changed', 'Switched to Cyan theme', 'success', 2000);
+      break;
+    case 'purple':
+      root.style.setProperty('--bat-gold', '#cc88ff');
+      root.style.setProperty('--bat-gold-dim', '#8844cc');
+      showNotification('Theme Changed', 'Switched to Purple theme', 'success', 2000);
+      break;
+    case 'amber':
+      root.style.setProperty('--bat-gold', '#ffaa00');
+      root.style.setProperty('--bat-gold-dim', '#cc8800');
+      showNotification('Theme Changed', 'Switched to Amber theme', 'success', 2000);
+      break;
+    default:
+      root.style.setProperty('--bat-gold', '#00ff88');
+      root.style.setProperty('--bat-gold-dim', '#00b35c');
+      showNotification('Theme Changed', 'Switched to Default theme', 'success', 2000);
+  }
+}
+
+// ============================
+// ===== WINDOW SNAPPING ======
+// ============================
+let snapEnabled = true;
+let isDraggingForSnap = false;
+let snapIndicator = null;
+
+function initWindowSnapping() {
+  snapIndicator = document.getElementById('snap-indicator');
+  
+  // Override the existing drag functions to add snapping
+  const originalStartDrag = window.startDrag;
+  window.startDrag = function(e, id) {
+    isDraggingForSnap = true;
+    originalStartDrag(e, id);
+  };
+  
+  const originalStopDrag = window.stopDrag;
+  window.stopDrag = function() {
+    if (isDraggingForSnap && snapEnabled && dragData) {
+      applyWindowSnap(dragData.win);
+    }
+    isDraggingForSnap = false;
+    hideSnapIndicator();
+    originalStopDrag();
+  };
+  
+  const originalDoDrag = window.doDrag;
+  window.doDrag = function(e) {
+    originalDoDrag(e);
+    if (isDraggingForSnap && snapEnabled && dragData) {
+      updateSnapIndicator(e);
+    }
+  };
+}
+
+function updateSnapIndicator(e) {
+  const snapZone = 50;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight - 40; // minus taskbar
+  
+  let snapType = null;
+  
+  if (e.clientX < snapZone) {
+    snapType = 'left';
+  } else if (e.clientX > vw - snapZone) {
+    snapType = 'right';
+  } else if (e.clientY < snapZone) {
+    snapType = 'top';
+  }
+  
+  if (snapType) {
+    showSnapIndicator(snapType, vw, vh);
+  } else {
+    hideSnapIndicator();
+  }
+}
+
+function showSnapIndicator(type, vw, vh) {
+  if (!snapIndicator) return;
+  
+  snapIndicator.classList.add('snap-show');
+  
+  switch(type) {
+    case 'left':
+      snapIndicator.style.left = '0';
+      snapIndicator.style.top = '0';
+      snapIndicator.style.width = (vw / 2) + 'px';
+      snapIndicator.style.height = vh + 'px';
+      break;
+    case 'right':
+      snapIndicator.style.left = (vw / 2) + 'px';
+      snapIndicator.style.top = '0';
+      snapIndicator.style.width = (vw / 2) + 'px';
+      snapIndicator.style.height = vh + 'px';
+      break;
+    case 'top':
+      snapIndicator.style.left = '0';
+      snapIndicator.style.top = '0';
+      snapIndicator.style.width = vw + 'px';
+      snapIndicator.style.height = vh + 'px';
+      break;
+  }
+}
+
+function hideSnapIndicator() {
+  if (snapIndicator) {
+    snapIndicator.classList.remove('snap-show');
+  }
+}
+
+function applyWindowSnap(win) {
+  if (!win || !snapIndicator || !snapIndicator.classList.contains('snap-show')) return;
+  
+  const vw = window.innerWidth;
+  const vh = window.innerHeight - 40;
+  const left = parseInt(snapIndicator.style.left);
+  const width = parseInt(snapIndicator.style.width);
+  
+  if (width === vw) {
+    // Maximize
+    maximizeWindow(win.id);
+  } else if (left === 0) {
+    // Snap left
+    win.style.left = '0';
+    win.style.top = '0';
+    win.style.width = (vw / 2) + 'px';
+    win.style.height = vh + 'px';
+  } else {
+    // Snap right
+    win.style.left = (vw / 2) + 'px';
+    win.style.top = '0';
+    win.style.width = (vw / 2) + 'px';
+    win.style.height = vh + 'px';
+  }
+}
+
+// ============================
+// ===== ENHANCED SHORTCUTS ===
+// ============================
+function initEnhancedShortcuts() {
+  document.addEventListener('keydown', (e) => {
+    const desktop = document.getElementById('desktop');
+    if (!desktop || desktop.style.display === 'none') return;
+    
+    // Ctrl/Cmd + K for search
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      openSearch();
+      return;
+    }
+    
+    // Ctrl/Cmd + M for performance monitor
+    if ((e.ctrlKey || e.metaKey) && e.key === 'm') {
+      e.preventDefault();
+      togglePerfMonitor();
+      return;
+    }
+    
+    // Ctrl/Cmd + T for theme toggle
+    if ((e.ctrlKey || e.metaKey) && e.key === 't') {
+      e.preventDefault();
+      toggleTheme();
+      return;
+    }
+    
+    // Ctrl/Cmd + W to close active window
+    if ((e.ctrlKey || e.metaKey) && e.key === 'w') {
+      e.preventDefault();
+      const activeWin = document.querySelector('.window.window-active');
+      if (activeWin && activeWin.id) {
+        closeWindow(activeWin.id);
+      }
+      return;
+    }
+  });
+}
+
+// ============================
+// ===== INIT ALL FEATURES ====
+// ============================
+function initAllEnhancements() {
+  initSearch();
+  initWindowSnapping();
+  initEnhancedShortcuts();
+  initFloatingMenu();
+  initDesktopDragSelect();
+  initWindowShake();
+  initDoubleClickDetection();
+  initNotepad();
+  
+  // Show welcome notification
+  setTimeout(() => {
+    showNotification(
+      'Welcome to DevShell OS',
+      'Explore my portfolio with an interactive retro desktop experience!',
+      'success',
+      6000
+    );
+  }, 2000);
+}
+
+// ============================
+// ===== FLOATING ACTION MENU =
+// ============================
+let floatingMenuOpen = false;
+
+function initFloatingMenu() {
+  const menu = document.getElementById('floating-menu');
+  if (menu) {
+    menu.classList.add('fab-show');
+  }
+}
+
+function toggleFloatingMenu() {
+  floatingMenuOpen = !floatingMenuOpen;
+  const fabMain = document.querySelector('.fab-main');
+  if (fabMain) {
+    if (floatingMenuOpen) {
+      fabMain.classList.add('fab-active');
+    } else {
+      fabMain.classList.remove('fab-active');
+    }
+  }
+}
+
+// Close floating menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (floatingMenuOpen && !e.target.closest('#floating-menu')) {
+    toggleFloatingMenu();
+  }
+});
+
+// ============================
+// ===== NOTEPAD ==============
+// ============================
+function initNotepad() {
+  const textarea = document.getElementById('notepad-textarea');
+  if (textarea) {
+    textarea.addEventListener('input', updateNotepadInfo);
+    updateNotepadInfo();
+  }
+}
+
+function updateNotepadInfo() {
+  const textarea = document.getElementById('notepad-textarea');
+  if (!textarea) return;
+  
+  const text = textarea.value;
+  const chars = text.length;
+  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  const lines = text.split('\n').length;
+  
+  document.getElementById('notepad-chars').textContent = `${chars} character${chars !== 1 ? 's' : ''}`;
+  document.getElementById('notepad-words').textContent = `${words} word${words !== 1 ? 's' : ''}`;
+  document.getElementById('notepad-lines').textContent = `${lines} line${lines !== 1 ? 's' : ''}`;
+}
+
+// ============================
+// ===== DESKTOP DRAG SELECT ==
+// ============================
+let isDragSelecting = false;
+let dragSelectStart = { x: 0, y: 0 };
+let selectionBox = null;
+
+function initDesktopDragSelect() {
+  const desktop = document.getElementById('desktop');
+  if (!desktop) return;
+  
+  desktop.addEventListener('mousedown', (e) => {
+    if (e.target === desktop || e.target.id === 'rain-canvas') {
+      isDragSelecting = true;
+      dragSelectStart = { x: e.clientX, y: e.clientY };
+      
+      selectionBox = document.createElement('div');
+      selectionBox.className = 'desktop-selection-box';
+      selectionBox.style.left = e.clientX + 'px';
+      selectionBox.style.top = e.clientY + 'px';
+      desktop.appendChild(selectionBox);
+    }
+  });
+  
+  document.addEventListener('mousemove', (e) => {
+    if (isDragSelecting && selectionBox) {
+      const width = Math.abs(e.clientX - dragSelectStart.x);
+      const height = Math.abs(e.clientY - dragSelectStart.y);
+      const left = Math.min(e.clientX, dragSelectStart.x);
+      const top = Math.min(e.clientY, dragSelectStart.y);
+      
+      selectionBox.style.width = width + 'px';
+      selectionBox.style.height = height + 'px';
+      selectionBox.style.left = left + 'px';
+      selectionBox.style.top = top + 'px';
+      
+      // Check icon intersections
+      const icons = document.querySelectorAll('.desktop-icon');
+      const boxRect = selectionBox.getBoundingClientRect();
+      
+      icons.forEach(icon => {
+        const iconRect = icon.getBoundingClientRect();
+        const intersects = !(
+          boxRect.right < iconRect.left ||
+          boxRect.left > iconRect.right ||
+          boxRect.bottom < iconRect.top ||
+          boxRect.top > iconRect.bottom
+        );
+        
+        if (intersects) {
+          icon.classList.add('selected');
+        } else {
+          icon.classList.remove('selected');
+        }
+      });
+    }
+  });
+  
+  document.addEventListener('mouseup', () => {
+    if (isDragSelecting) {
+      isDragSelecting = false;
+      if (selectionBox) {
+        selectionBox.remove();
+        selectionBox = null;
+      }
+    }
+  });
+}
+
+// ============================
+// ===== WINDOW SHAKE =========
+// ============================
+function initWindowShake() {
+  // Shake window when trying to close with unsaved changes (demo)
+  const originalCloseWindow = window.closeWindow;
+  window.closeWindow = function(id) {
+    const win = document.getElementById(id);
+    if (win && Math.random() < 0.1) { // 10% chance for demo
+      win.classList.add('window-shake');
+      setTimeout(() => win.classList.remove('window-shake'), 500);
+      showNotification('Wait!', 'Are you sure? (Just kidding, closing...)', 'warning', 2000);
+      setTimeout(() => originalCloseWindow(id), 600);
+    } else {
+      originalCloseWindow(id);
+    }
+  };
+}
+
+// ============================
+// ===== DOUBLE CLICK DETECT ==
+// ============================
+let clickTimeout = null;
+let clickCount = 0;
+
+function initDoubleClickDetection() {
+  document.querySelectorAll('.desktop-icon').forEach(icon => {
+    icon.addEventListener('click', function(e) {
+      clickCount++;
+      
+      if (clickCount === 1) {
+        clickTimeout = setTimeout(() => {
+          clickCount = 0;
+        }, 300);
+      } else if (clickCount === 2) {
+        clearTimeout(clickTimeout);
+        clickCount = 0;
+        this.classList.add('double-click-effect');
+        setTimeout(() => this.classList.remove('double-click-effect'), 300);
+      }
+    });
+  });
+}
+
+// ============================
+// ===== WINDOW MINIMIZE ANIM =
+// ============================
+const originalMinimizeWindow = window.minimizeWindow;
+window.minimizeWindow = function(id) {
+  const win = document.getElementById(id);
+  if (win) {
+    win.classList.add('minimizing');
+    setTimeout(() => {
+      win.classList.remove('minimizing');
+      originalMinimizeWindow(id);
+    }, 300);
+  }
+};
+
+// ============================
+// ===== TASKBAR BOUNCE =======
+// ============================
+function bounceTaskbarButton(id) {
+  const btn = document.getElementById('tbtn-' + id);
+  if (btn) {
+    btn.classList.add('bounce');
+    setTimeout(() => btn.classList.remove('bounce'), 500);
+  }
+}
+
+// Bounce when window gets focus
+const originalSetActiveWindow = window.setActiveWindow;
+window.setActiveWindow = function(id) {
+  originalSetActiveWindow(id);
+  bounceTaskbarButton(id);
+};
+
+// ============================
+// ===== PARTICLE BURST =======
+// ============================
+function createParticleBurst(x, y, count = 12) {
+  const desktop = document.getElementById('desktop');
+  if (!desktop) return;
+  
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    const angle = (Math.PI * 2 * i) / count;
+    const velocity = 50 + Math.random() * 50;
+    const tx = Math.cos(angle) * velocity;
+    const ty = Math.sin(angle) * velocity;
+    
+    particle.style.cssText = `
+      left: ${x}px;
+      top: ${y}px;
+      width: 4px;
+      height: 4px;
+      background: var(--bat-gold);
+      --tx: ${tx}px;
+      --ty: ${ty}px;
+    `;
+    
+    desktop.appendChild(particle);
+    
+    setTimeout(() => particle.remove(), 1000);
+  }
+}
+
+// Trigger particle burst on window open
+const originalOpenWindow = window.openWindow;
+window.openWindow = function(name) {
+  originalOpenWindow(name);
+  const win = document.getElementById(`win-${name}`);
+  if (win) {
+    const rect = win.getBoundingClientRect();
+    createParticleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+  }
+};
+
+// ============================
+// ===== ENHANCED TOOLTIPS ====
+// ============================
+function initTooltips() {
+  document.querySelectorAll('[title]').forEach(el => {
+    const title = el.getAttribute('title');
+    if (title) {
+      el.setAttribute('data-tooltip', title);
+      el.removeAttribute('title');
+    }
+  });
+}
+
+// ============================
+// ===== WINDOW LOADING STATE =
+// ============================
+function showWindowLoading(id, duration = 1000) {
+  const win = document.getElementById(id);
+  if (win) {
+    win.classList.add('window-loading');
+    setTimeout(() => win.classList.remove('window-loading'), duration);
+  }
+}
+
+// ============================
+// ===== KONAMI CODE EASTER EGG
+// ============================
+let konamiCode = [];
+const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+function initKonamiCode() {
+  document.addEventListener('keydown', (e) => {
+    konamiCode.push(e.key);
+    konamiCode = konamiCode.slice(-10);
+    
+    if (konamiCode.join(',') === konamiSequence.join(',')) {
+      triggerKonamiEasterEgg();
+      konamiCode = [];
+    }
+  });
+}
+
+function triggerKonamiEasterEgg() {
+  showNotification(
+    '🎮 KONAMI CODE ACTIVATED!',
+    'You found the secret! Extra life granted... just kidding!',
+    'success',
+    5000
+  );
+  
+  // Make all windows dance
+  document.querySelectorAll('.window').forEach((win, i) => {
+    setTimeout(() => {
+      win.classList.add('window-shake');
+      setTimeout(() => win.classList.remove('window-shake'), 500);
+    }, i * 100);
+  });
+  
+  // Change theme rapidly
+  let themeCount = 0;
+  const themeInterval = setInterval(() => {
+    toggleTheme();
+    themeCount++;
+    if (themeCount >= 8) {
+      clearInterval(themeInterval);
+    }
+  }, 200);
+}
+
+// Initialize Konami code on desktop load
+setTimeout(initKonamiCode, 1000);

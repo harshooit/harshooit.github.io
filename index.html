@@ -78,6 +78,58 @@
     <!-- TOAST -->
     <div id="toast"></div>
 
+    <!-- NOTIFICATION STACK -->
+    <div id="notification-stack"></div>
+
+    <!-- SEARCH BOX -->
+    <div id="search-box">
+      <div class="search-header">
+        <span>🔍 Quick Search</span>
+        <button class="search-close-btn" onclick="closeSearch()">✕</button>
+      </div>
+      <div class="search-input-wrap">
+        <input type="text" id="search-input" placeholder="Search projects, skills, contacts..." autocomplete="off">
+      </div>
+      <div id="search-results"></div>
+    </div>
+
+    <!-- PERFORMANCE MONITOR -->
+    <div id="perf-monitor">
+      <div class="perf-header">⚡ System Monitor</div>
+      <div class="perf-row">
+        <span class="perf-label">FPS:</span>
+        <span class="perf-value" id="perf-fps">60</span>
+      </div>
+      <div class="perf-row">
+        <span class="perf-label">Memory:</span>
+        <span class="perf-value" id="perf-mem">--</span>
+      </div>
+      <div class="perf-row">
+        <span class="perf-label">Uptime:</span>
+        <span class="perf-value" id="perf-uptime">00:00</span>
+      </div>
+      <div class="perf-row">
+        <span class="perf-label">Windows:</span>
+        <span class="perf-value" id="perf-windows">0</span>
+      </div>
+    </div>
+
+    <!-- SNAP INDICATOR -->
+    <div class="snap-indicator" id="snap-indicator"></div>
+    
+    <!-- FLOATING ACTION MENU -->
+    <div id="floating-menu">
+      <button class="fab-main" onclick="toggleFloatingMenu()" title="Quick Actions">
+        <span class="fab-icon">+</span>
+      </button>
+      <div class="fab-options">
+        <button class="fab-option" onclick="openWindow('about')" title="About Me" data-tooltip="About">🧬</button>
+        <button class="fab-option" onclick="openWindow('projects')" title="Projects" data-tooltip="Projects">💻</button>
+        <button class="fab-option" onclick="openWindow('hobbies')" title="Favourites" data-tooltip="Favourites">⭐</button>
+        <button class="fab-option" onclick="openWindow('contact')" title="Contact" data-tooltip="Contact">📡</button>
+      </div>
+    </div>
+
     <!-- TERMINAL EASTER EGG FLASH -->
     <div id="terminal-flash"></div>
 
@@ -92,15 +144,29 @@
           <span>&gt;_</span> DevShell OS
         </div>
         <div class="start-menu-items">
+          <div class="start-menu-section">Portfolio</div>
           <div class="start-item" onclick="openWindow('about')">🧬 About Me</div>
           <div class="start-item" onclick="openWindow('projects')">💻 Projects</div>
           <div class="start-item" onclick="openWindow('hobbies')">⭐ Favourites</div>
           <div class="start-item" onclick="openWindow('contact')">📡 Contact</div>
           <div class="start-divider"></div>
+          <div class="start-menu-section">Applications</div>
+          <div class="start-item" onclick="openWindow('notepad')">📝 Notepad</div>
+          <div class="start-divider"></div>
+          <div class="start-menu-section">Tools</div>
+          <div class="start-item" onclick="openSearch();closeStartMenu()">🔍 Search (Ctrl+K)</div>
+          <div class="start-item" onclick="togglePerfMonitor();closeStartMenu()">⚡ Performance</div>
+          <div class="start-item" onclick="toggleTheme();closeStartMenu()">🎨 Change Theme</div>
+          <div class="start-divider"></div>
           <div class="start-item shutdown" onclick="shutdown()">⏻ Shut Down...</div>
         </div>
       </div>
       <div id="taskbar-windows"></div>
+      <div id="taskbar-tray">
+        <div class="tray-icon" onclick="toggleTheme()" title="Change Theme (Ctrl+T)">🎨</div>
+        <div class="tray-icon" onclick="togglePerfMonitor()" title="Performance Monitor (Ctrl+M)">⚡</div>
+        <div class="tray-icon" onclick="openSearch()" title="Search (Ctrl+K)">🔍</div>
+      </div>
       <div id="taskbar-clock" title="Shortcuts: 1 About · 2 Projects · 3 Favourites · 4 Contact"></div>
     </div>
 
@@ -121,6 +187,10 @@
       <div class="desktop-icon" onclick="selectIcon(event,this)" ondblclick="openWindow('contact')" id="icon-contact">
         <div class="icon-img">📡</div>
         <span>Contact</span>
+      </div>
+      <div class="desktop-icon" onclick="selectIcon(event,this)" ondblclick="openWindow('notepad')" id="icon-notepad">
+        <div class="icon-img">📝</div>
+        <span>Notepad</span>
       </div>
       <div class="desktop-icon" onclick="selectIcon(event,this)" ondblclick="shutdown()" id="icon-shutdown">
         <div class="icon-img">⏻</div>
@@ -231,6 +301,29 @@
       </div>
     </div>
 
+    <!-- ===== NOTEPAD WINDOW ===== -->
+    <div class="window" id="win-notepad" style="top:140px;left:400px;width:500px;display:none;">
+      <div class="title-bar" onmousedown="startDrag(event,'win-notepad')">
+        <span class="title-bar-text">📝 Notepad — Untitled</span>
+        <div class="title-bar-controls">
+          <button onclick="minimizeWindow('win-notepad')" title="Minimize">_</button>
+          <button onclick="maximizeWindow('win-notepad')" title="Maximize">□</button>
+          <button onclick="closeWindow('win-notepad')" title="Close">✕</button>
+        </div>
+      </div>
+      <div class="menu-bar js-os-menu" data-menu-variant="default"></div>
+      <div class="window-body" id="notepad-view">
+        <textarea id="notepad-textarea" placeholder="Start typing..."></textarea>
+        <div class="notepad-info">
+          <span id="notepad-chars">0 characters</span> | 
+          <span id="notepad-words">0 words</span> | 
+          <span id="notepad-lines">1 line</span>
+        </div>
+      </div>
+      <div class="window-status"><span class="status-led" aria-hidden="true"></span><span>NOTEPAD.EXE — Ready</span>
+      </div>
+    </div>
+
     <!-- SHUTDOWN CONFIRM DIALOG -->
     <div id="shutdown-dialog" style="display:none">
       <div class="window shutdown-window">
@@ -258,7 +351,9 @@
     </div>
 
     <!-- SPINNING DISC (MUSIC INDICATOR) -->
-    <div id="music-disc" onclick="toggleMusicMute()" title="Click to mute/unmute"></div>
+    <div id="music-disc" onclick="toggleMusicMute()" title="Click to mute/unmute audio">
+      <div class="disc-label">AUDIO</div>
+    </div>
 
     <!-- HPJ SIGNATURE WATERMARK -->
     <div id="desktop-signature">HPJ · DevShell OS · 2026</div>
