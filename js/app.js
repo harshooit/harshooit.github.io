@@ -535,14 +535,53 @@ function renderAboutDisplay() {
 // ============================
 // ===== PROJECTS SECTION =====
 // ============================
+let projectFilter = 'all';
+let projectSort = 'default';
+
 function renderProjectsGrid() {
   const grid = document.getElementById('projects-grid');
-  grid.innerHTML = PORTFOLIO.projects.map(p => {
+  
+  // Add filter and sort controls
+  const controls = `
+    <div class="project-controls">
+      <div class="project-filter-group">
+        <label class="filter-label">FILTER:</label>
+        <button class="filter-btn ${projectFilter === 'all' ? 'active' : ''}" onclick="filterProjects('all')">All</button>
+        <button class="filter-btn ${projectFilter === 'hardware' ? 'active' : ''}" onclick="filterProjects('hardware')">Hardware</button>
+        <button class="filter-btn ${projectFilter === 'software' ? 'active' : ''}" onclick="filterProjects('software')">Software</button>
+        <button class="filter-btn ${projectFilter === 'cloud' ? 'active' : ''}" onclick="filterProjects('cloud')">Cloud</button>
+      </div>
+      <div class="project-sort-group">
+        <label class="filter-label">SORT:</label>
+        <button class="filter-btn ${projectSort === 'default' ? 'active' : ''}" onclick="sortProjects('default')">Default</button>
+        <button class="filter-btn ${projectSort === 'name' ? 'active' : ''}" onclick="sortProjects('name')">Name</button>
+      </div>
+    </div>
+  `;
+  
+  // Filter projects
+  let filteredProjects = PORTFOLIO.projects;
+  if (projectFilter !== 'all') {
+    filteredProjects = PORTFOLIO.projects.filter(p => {
+      const tags = p.tags.toLowerCase();
+      if (projectFilter === 'hardware') return tags.includes('arduino') || tags.includes('circuit') || tags.includes('robot') || tags.includes('electronics');
+      if (projectFilter === 'software') return tags.includes('python') || tags.includes('mediapipe') || tags.includes('computer vision') || tags.includes('ai');
+      if (projectFilter === 'cloud') return tags.includes('cloud') || tags.includes('azure');
+      return true;
+    });
+  }
+  
+  // Sort projects
+  if (projectSort === 'name') {
+    filteredProjects = [...filteredProjects].sort((a, b) => a.title.localeCompare(b.title));
+  }
+  
+  const projectCards = filteredProjects.map(p => {
     const thumb = p.images?.length
       ? `<img src="${p.images[0]}" alt="${escHtml(p.title)}">`
       : `<div class="project-no-img">${p.emoji}<span>Image Coming Soon</span></div>`;
     return `
-      <div class="project-card" onclick="viewProject(${p.id})">
+      <div class="project-card" onclick="viewProject(${p.id})" data-project-id="${p.id}">
         <div class="project-card-thumb">${thumb}</div>
         <div class="project-card-title">${escHtml(p.title)}</div>
         ${p.tags ? `<div class="project-card-tags">${escHtml(p.tags)}</div>` : ''}
@@ -552,6 +591,20 @@ function renderProjectsGrid() {
       </div>
     `;
   }).join('');
+  
+  grid.innerHTML = controls + '<div class="projects-grid-container">' + projectCards + '</div>';
+}
+
+function filterProjects(filter) {
+  projectFilter = filter;
+  renderProjectsGrid();
+  showToast(`Filtered: ${filter === 'all' ? 'All Projects' : filter.charAt(0).toUpperCase() + filter.slice(1)}`, 1500);
+}
+
+function sortProjects(sort) {
+  projectSort = sort;
+  renderProjectsGrid();
+  showToast(`Sorted by: ${sort === 'default' ? 'Default Order' : 'Name'}`, 1500);
 }
 
 function viewProject(id) {
@@ -681,11 +734,11 @@ function renderHobbiesGrid() {
 function renderContactDisplay() {
   const c = PORTFOLIO.contact;
   const links = [
-    { icon: '📧', label: 'Email', value: c.email, href: `mailto:${c.email}` },
-    { icon: '💼', label: 'LinkedIn', value: 'harshit-jadhav-429960357', href: c.linkedin },
-    { icon: '🐙', label: 'GitHub', value: 'harshooit', href: c.github },
-    { icon: '📸', label: 'Instagram', value: '@harsho_oit', href: c.instagram },
-    { icon: '🎮', label: 'Discord', value: c.discord, href: `https://discord.com/users/${c.discord}` },
+    { icon: '📧', label: 'Email', value: c.email, href: `mailto:${c.email}`, copyable: true },
+    { icon: '💼', label: 'LinkedIn', value: 'harshit-jadhav-429960357', href: c.linkedin, copyable: false },
+    { icon: '🐙', label: 'GitHub', value: 'harshooit', href: c.github, copyable: false },
+    { icon: '📸', label: 'Instagram', value: '@harsho_oit', href: c.instagram, copyable: false },
+    { icon: '🎮', label: 'Discord', value: c.discord, href: `https://discord.com/users/${c.discord}`, copyable: true },
   ].filter(l => l.value);
 
   const display = document.getElementById('contact-display');
@@ -697,15 +750,29 @@ function renderContactDisplay() {
     <div class="contact-subtitle">Reach out through any channel below</div>
     <div class="contact-card">
       ${links.map((l, i) => `
-        <a class="contact-link-row contact-row-reveal" style="animation-delay: ${i * 0.08}s" href="${escHtml(l.href)}" target="_blank" rel="noopener">
-          <span class="contact-icon">${l.icon}</span>
-          <span class="contact-label">${escHtml(l.label)}</span>
-          <span class="contact-value">${escHtml(l.value)}</span>
-          <span class="contact-arrow">›</span>
-        </a>
+        <div class="contact-link-wrapper contact-row-reveal" style="animation-delay: ${i * 0.08}s">
+          <a class="contact-link-row" href="${escHtml(l.href)}" target="_blank" rel="noopener">
+            <span class="contact-icon">${l.icon}</span>
+            <span class="contact-label">${escHtml(l.label)}</span>
+            <span class="contact-value">${escHtml(l.value)}</span>
+            <span class="contact-arrow">›</span>
+          </a>
+          ${l.copyable ? `<button class="contact-copy-btn" onclick="copyToClipboard('${escHtml(l.value)}', '${escHtml(l.label)}')" title="Copy to clipboard">📋</button>` : ''}
+        </div>
       `).join('')}
     </div>
+    <div class="contact-footer">
+      <div class="contact-footer-text">💡 Click any link to open, or use the copy button for quick access</div>
+    </div>
   `;
+}
+
+function copyToClipboard(text, label) {
+  navigator.clipboard.writeText(text).then(() => {
+    showNotification('Copied!', `${label} copied to clipboard`, 'success', 2000);
+  }).catch(() => {
+    showToast(`Failed to copy ${label}`, 2000);
+  });
 }
 
 // ============================
