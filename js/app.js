@@ -1878,3 +1878,81 @@ function triggerKonamiEasterEgg() {
 
 // Initialize Konami code on desktop load
 setTimeout(initKonamiCode, 1000);
+
+// ============================
+// ===== COMPANION CHARACTER ==
+// ============================
+const companionMessages = [
+  "Hey there! 👋 I'm your DevShell companion!",
+  "Did you know? Press <span class='companion-speech-highlight'>Ctrl+K</span> to search!",
+  "Try pressing <span class='companion-speech-highlight'>1, 2, 3, or 4</span> to open windows quickly!",
+  "Right-click the desktop for a quick menu! 🖱️",
+  "Harshit built this entire portfolio from scratch! 💻",
+  "The music disc in the corner controls audio 🎵",
+  "Drag windows around and snap them to edges! ✨",
+  "Check out the Projects section for cool stuff! 🚀",
+  "Type <span class='companion-speech-highlight'>sudo</span> for a secret... 🤫",
+  "Hover over skills to see them glow! ⚡",
+  "The floating menu has quick shortcuts! 📱",
+  "Try the theme toggle in the system tray! 🎨",
+  "Double-click desktop icons to open them! 🖱️",
+  "Press <span class='companion-speech-highlight'>Esc</span> to close menus!",
+  "This portfolio is fully responsive! 📱💻",
+  "Harshit loves AI, robotics, and electronics! 🤖",
+  "All windows are draggable and resizable! 🪟",
+  "The Konami code works here... ↑↑↓↓←→←→BA",
+  "Filter projects by category! 🔍",
+  "Copy contact info with one click! 📋",
+  "I blink every 4 seconds! Did you notice? 👀",
+  "Feeling lost? Just click me anytime! 😊",
+  "The rain effect is pure CSS magic! 🌧️",
+  "Windows have smooth animations! Watch closely! ✨",
+  "This OS runs entirely in your browser! 🌐"
+];
+
+let lastCompanionMessage = -1;
+let companionSpeechTimeout = null;
+
+function interactWithCompanion() {
+  const speech = document.getElementById('companion-speech');
+  const companion = document.getElementById('companion');
+  
+  // Clear any existing timeout
+  if (companionSpeechTimeout) {
+    clearTimeout(companionSpeechTimeout);
+  }
+  
+  // If already showing, hide it
+  if (speech.classList.contains('show')) {
+    speech.classList.remove('show');
+    return;
+  }
+  
+  // Get a random message different from the last one
+  let messageIndex;
+  do {
+    messageIndex = Math.floor(Math.random() * companionMessages.length);
+  } while (messageIndex === lastCompanionMessage && companionMessages.length > 1);
+  
+  lastCompanionMessage = messageIndex;
+  
+  // Show the message
+  speech.innerHTML = companionMessages[messageIndex];
+  speech.classList.add('show');
+  
+  // Add bounce animation to companion
+  companion.style.animation = 'none';
+  setTimeout(() => {
+    companion.style.animation = '';
+  }, 10);
+  
+  // Hide after 5 seconds
+  companionSpeechTimeout = setTimeout(() => {
+    speech.classList.remove('show');
+  }, 5000);
+}
+
+// Auto-greet on first load
+setTimeout(() => {
+  interactWithCompanion();
+}, 3000);
