@@ -1798,6 +1798,154 @@ body::after {
 }
 #desktop-signature:hover { color: rgba(0,255,136,0.5); }
 
+/* ===== COMPANION CHARACTER ===== */
+#companion {
+  position: fixed;
+  bottom: 60px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  cursor: var(--cursor-ui);
+  z-index: 9050;
+  transition: transform 0.3s ease;
+}
+
+#companion:hover {
+  transform: scale(1.1) translateY(-4px);
+}
+
+#companion:active {
+  transform: scale(0.95);
+}
+
+.companion-body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a28 0%, #0d0d18 100%);
+  border: 2px solid var(--bat-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 0 20px rgba(0,255,136,0.3),
+    inset 0 0 10px rgba(0,255,136,0.1);
+  animation: companionFloat 3s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.companion-body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(0,255,136,0.1) 50%,
+    transparent 70%
+  );
+  animation: companionShine 4s linear infinite;
+}
+
+@keyframes companionFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes companionShine {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.companion-face {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.companion-eyes {
+  display: flex;
+  gap: 12px;
+  animation: companionBlink 4s infinite;
+}
+
+@keyframes companionBlink {
+  0%, 48%, 52%, 100% { opacity: 1; }
+  50% { opacity: 0.1; }
+}
+
+.companion-eye {
+  font-size: 16px;
+  color: var(--bat-gold);
+  text-shadow: 0 0 4px var(--bat-gold);
+  line-height: 1;
+}
+
+.companion-mouth {
+  font-size: 18px;
+  color: var(--bat-gold);
+  text-shadow: 0 0 4px var(--bat-gold);
+  line-height: 1;
+  transition: transform 0.3s;
+}
+
+#companion:hover .companion-mouth {
+  transform: scale(1.2);
+}
+
+.companion-speech {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  min-width: 180px;
+  max-width: 220px;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #1a1a28 0%, #0d0d18 100%);
+  border: 1px solid var(--bat-gold);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--bat-text);
+  line-height: 1.5;
+  box-shadow: 
+    0 0 20px rgba(0,255,136,0.3),
+    inset 0 0 10px rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 9999;
+  text-align: center;
+}
+
+.companion-speech::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--bat-gold);
+}
+
+.companion-speech.show {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.companion-speech-highlight {
+  color: var(--bat-gold);
+  font-weight: bold;
+}
+
 /* ===== HOBBY LINK BADGES ===== */
 .cat-badge {
   font-family: var(--font-mono);
@@ -2335,6 +2483,33 @@ body::after {
     height: 20px; 
   }
   
+  #theme-toggle { width: 36px; height: 36px; bottom: 120px; font-size: 18px; }
+  #perf-monitor { top: 10px; left: 10px; font-size: 10px; min-width: 150px; }
+  #search-box { width: 95vw; }
+  #notification-stack { top: 10px; right: 10px; max-width: calc(100vw - 20px); }
+  
+  /* Companion - positioned above signature on left */
+  #companion {
+    bottom: 120px;
+    left: 16px;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .companion-eye {
+    font-size: 14px;
+  }
+  
+  .companion-mouth {
+    font-size: 16px;
+  }
+  
+  .companion-speech {
+    bottom: 60px;
+    min-width: 160px;
+    max-width: calc(100vw - 40px);
+    font-size: 10px;
+    padding: 8px 12px;
   #theme-toggle { display: none; }
   #perf-monitor { 
     top: 10px; 
@@ -2357,6 +2532,8 @@ body::after {
   
   #desktop-signature {
     bottom: 52px;
+    font-size: 9px;
+  }
     left: 12px;
     font-size: 9px;
   }
@@ -2384,6 +2561,27 @@ body::after {
   .contact-icon { font-size: 18px; width: 24px; }
   .contact-label { font-size: 9px; min-width: 60px; }
   
+  /* Companion - smaller on very small screens */
+  #companion {
+    width: 45px;
+    height: 45px;
+    bottom: 110px;
+  }
+  
+  .companion-eye {
+    font-size: 12px;
+    gap: 10px;
+  }
+  
+  .companion-mouth {
+    font-size: 14px;
+  }
+  
+  .companion-speech {
+    min-width: 140px;
+    max-width: calc(100vw - 30px);
+    font-size: 9px;
+    padding: 7px 10px;
   #desktop-icons {
     top: 95px;
   }
