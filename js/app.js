@@ -532,6 +532,22 @@ function renderAboutDisplay() {
   }
 }
 
+// Skill hover effects
+function highlightSkill(el) {
+  // Add subtle pulse effect to the skill bar
+  const bar = el.querySelector('.skill-bar-inner');
+  if (bar) {
+    bar.style.animationPlayState = 'paused';
+  }
+}
+
+function unhighlightSkill(el) {
+  const bar = el.querySelector('.skill-bar-inner');
+  if (bar) {
+    bar.style.animationPlayState = 'running';
+  }
+}
+
 // ============================
 // ===== PROJECTS SECTION =====
 // ============================
@@ -1549,7 +1565,6 @@ function initAllEnhancements() {
   initDesktopDragSelect();
   initWindowShake();
   initDoubleClickDetection();
-  initNotepad();
   
   // Show welcome notification
   setTimeout(() => {
@@ -1592,31 +1607,6 @@ document.addEventListener('click', (e) => {
     toggleFloatingMenu();
   }
 });
-
-// ============================
-// ===== NOTEPAD ==============
-// ============================
-function initNotepad() {
-  const textarea = document.getElementById('notepad-textarea');
-  if (textarea) {
-    textarea.addEventListener('input', updateNotepadInfo);
-    updateNotepadInfo();
-  }
-}
-
-function updateNotepadInfo() {
-  const textarea = document.getElementById('notepad-textarea');
-  if (!textarea) return;
-  
-  const text = textarea.value;
-  const chars = text.length;
-  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-  const lines = text.split('\n').length;
-  
-  document.getElementById('notepad-chars').textContent = `${chars} character${chars !== 1 ? 's' : ''}`;
-  document.getElementById('notepad-words').textContent = `${words} word${words !== 1 ? 's' : ''}`;
-  document.getElementById('notepad-lines').textContent = `${lines} line${lines !== 1 ? 's' : ''}`;
-}
 
 // ============================
 // ===== DESKTOP DRAG SELECT ==
