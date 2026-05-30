@@ -150,9 +150,6 @@
           <div class="start-item" onclick="openWindow('hobbies')">⭐ Favourites</div>
           <div class="start-item" onclick="openWindow('contact')">📡 Contact</div>
           <div class="start-divider"></div>
-          <div class="start-menu-section">Applications</div>
-          <div class="start-item" onclick="openWindow('notepad')">📝 Notepad</div>
-          <div class="start-divider"></div>
           <div class="start-menu-section">Tools</div>
           <div class="start-item" onclick="openSearch();closeStartMenu()">🔍 Search (Ctrl+K)</div>
           <div class="start-item" onclick="togglePerfMonitor();closeStartMenu()">⚡ Performance</div>
@@ -188,10 +185,7 @@
         <div class="icon-img">📡</div>
         <span>Contact</span>
       </div>
-      <div class="desktop-icon" onclick="selectIcon(event,this)" ondblclick="openWindow('notepad')" id="icon-notepad">
-        <div class="icon-img">📝</div>
-        <span>Notepad</span>
-      </div>
+
       <div class="desktop-icon" onclick="selectIcon(event,this)" ondblclick="shutdown()" id="icon-shutdown">
         <div class="icon-img">⏻</div>
         <span>Shut Down</span>
@@ -298,29 +292,6 @@
         <div id="contact-display"></div>
       </div>
       <div class="window-status"><span class="status-led" aria-hidden="true"></span><span>COMMS.LINK — Online</span>
-      </div>
-    </div>
-
-    <!-- ===== NOTEPAD WINDOW ===== -->
-    <div class="window" id="win-notepad" style="top:140px;left:400px;width:500px;display:none;">
-      <div class="title-bar" onmousedown="startDrag(event,'win-notepad')">
-        <span class="title-bar-text">📝 Notepad — Untitled</span>
-        <div class="title-bar-controls">
-          <button onclick="minimizeWindow('win-notepad')" title="Minimize">_</button>
-          <button onclick="maximizeWindow('win-notepad')" title="Maximize">□</button>
-          <button onclick="closeWindow('win-notepad')" title="Close">✕</button>
-        </div>
-      </div>
-      <div class="menu-bar js-os-menu" data-menu-variant="default"></div>
-      <div class="window-body" id="notepad-view">
-        <textarea id="notepad-textarea" placeholder="Start typing..."></textarea>
-        <div class="notepad-info">
-          <span id="notepad-chars">0 characters</span> | 
-          <span id="notepad-words">0 words</span> | 
-          <span id="notepad-lines">1 line</span>
-        </div>
-      </div>
-      <div class="window-status"><span class="status-led" aria-hidden="true"></span><span>NOTEPAD.EXE — Ready</span>
       </div>
     </div>
 
