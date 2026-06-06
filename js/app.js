@@ -42,11 +42,11 @@ const PORTFOLIO = {
       tags: 'MediaPipe, Python, Computer Vision, AI',
       url: 'https://harshitstrashideas.netlify.app/',
       images: [
-        'media/projects/Hand Tracking/Screenshot_20260605_204935_Chrome.jpg',
-        'media/projects/Hand Tracking/Screenshot_20260605_205019_Chrome.jpg',
-        'media/projects/Hand Tracking/Screenshot_20260605_205028_Chrome.jpg'
+        'media/Projects/Hand Tracking/Screenshot_20260605_204935_Chrome.jpg',
+        'media/Projects/Hand Tracking/Screenshot_20260605_205019_Chrome.jpg',
+        'media/Projects/Hand Tracking/Screenshot_20260605_205028_Chrome.jpg'
       ],
-      video: 'media/projects/Hand Tracking/Screen_Recording_20260605_205201_Chrome.mp4',
+      video: 'media/Projects/Hand Tracking/Screen_Recording_20260605_205201_Chrome.mp4',
     },
     {
       id: 2,
@@ -56,11 +56,11 @@ const PORTFOLIO = {
       tags: 'Electronics, Analog Circuits, Resistors, Capacitors',
       url: '',
       images: [
-        'media/projects/Clap Switch/Screenshot_20260605_204120_Google.jpg',
-        'media/projects/Clap Switch/Screenshot_20260605_205822_Video Player.jpg',
-        'media/projects/Clap Switch/Screenshot_20260605_205836_Video Player.jpg'
+        'media/Projects/Clap Switch/Screenshot_20260605_204120_Google.jpg',
+        'media/Projects/Clap Switch/Screenshot_20260605_205822_Video Player.jpg',
+        'media/Projects/Clap Switch/Screenshot_20260605_205836_Video Player.jpg'
       ],
-      video: 'media/projects/Clap Switch/VID-20251130-WA0000.mp4',
+      video: 'media/Projects/Clap Switch/VID-20251130-WA0000.mp4',
     },
     {
       id: 3,
@@ -70,12 +70,12 @@ const PORTFOLIO = {
       tags: 'Arduino UNO, Robotics, IR Sensors, Embedded Systems',
       url: '',
       images: [
-        'media/projects/line follower/IMG-20260605-WA0036.jpg',
-        'media/projects/line follower/20260413_225926.jpg',
-        'media/projects/line follower/IMG-20260605-WA0038.jpg',
-        'media/projects/line follower/IMG-20260605-WA0039.jpg'
+        'media/Projects/line follower/IMG-20260605-WA0036.jpg',
+        'media/Projects/line follower/20260413_225926.jpg',
+        'media/Projects/line follower/IMG-20260605-WA0038.jpg',
+        'media/Projects/line follower/IMG-20260605-WA0039.jpg'
       ],
-      video: 'media/projects/line follower/20260417_140517.mp4',
+      video: 'media/Projects/line follower/20260417_140517.mp4',
     },
     {
       id: 4,
