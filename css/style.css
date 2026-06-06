@@ -1037,7 +1037,8 @@ body::after {
     inset 1px 1px 0 rgba(255,255,255,0.07),
     inset -1px -1px 0 rgba(0,0,0,0.5);
   flex-wrap: wrap;
-=======
+}
+
 /* Project Controls */
 .project-controls {
   display: flex;
@@ -1048,18 +1049,13 @@ body::after {
   border: 1px solid var(--bat-border);
   border-left: 3px solid var(--bat-blue-lt);
   margin-bottom: 10px;
->>>>>>> 40907d532c31212a94259516ea026413d1536c37
 }
 
 .project-filter-group,
 .project-sort-group {
   display: flex;
   align-items: center;
-<<<<<<< HEAD
-  gap: 8px;
-=======
   gap: 6px;
->>>>>>> 40907d532c31212a94259516ea026413d1536c37
   flex-wrap: wrap;
 }
 
@@ -1067,23 +1063,13 @@ body::after {
   font-family: var(--font-orb);
   font-size: 9px;
   color: var(--bat-gold-dim);
-<<<<<<< HEAD
-  letter-spacing: 2px;
-=======
   letter-spacing: 1.5px;
->>>>>>> 40907d532c31212a94259516ea026413d1536c37
   text-transform: uppercase;
   margin-right: 4px;
 }
 
 .filter-btn {
   font-family: var(--font-mono);
-<<<<<<< HEAD
-  font-size: 11px;
-  padding: 6px 12px;
-  background: rgba(26,26,38,0.9);
-  color: var(--bat-text-dim);
-=======
   font-size: 10px;
   padding: 4px 10px;
   background: rgba(26,26,38,0.6);
@@ -1115,7 +1101,6 @@ body::after {
 
 .project-card {
   background: #0d0d18;
->>>>>>> 40907d532c31212a94259516ea026413d1536c37
   border: 1px solid var(--bat-border);
   cursor: var(--cursor-ui);
   white-space: nowrap;
@@ -3301,8 +3286,6 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   100% { transform: translateX(100%); }
 }
 
-<<<<<<< HEAD
-=======
 /* ===== MOBILE FAB ADJUSTMENTS ===== */
 @media (max-width: 768px) {
   #floating-menu {
@@ -3329,7 +3312,6 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   }
 }
 
->>>>>>> 40907d532c31212a94259516ea026413d1536c37
 /* ===== PARTICLE EFFECTS ===== */
 .particle {
   position: absolute;
